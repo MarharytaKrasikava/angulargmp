@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  border-radius: 3px;
+}
+
+fa-icon {
+  line-height: 1;
+  margin-right: 5px;
+}
