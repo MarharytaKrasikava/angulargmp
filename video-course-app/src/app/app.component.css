@@ -16,8 +16,8 @@ app-courses {
   padding: 20px 60px;
   display: flex;
   flex-direction: column;
-  height: 100%;
   box-sizing: border-box;
   flex: 1;
   background-color: #ececec;
+  align-items: center;
 }

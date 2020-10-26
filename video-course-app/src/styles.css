@@ -21,6 +21,14 @@ button {
   border-radius: 3px;
 }
 
+.blue-button {
+  padding: 10px 15px;
+  background-color: #50b9e8;
+  color: white;
+  height: fit-content;
+  margin-left: 10px;
+}
+
 fa-icon {
   line-height: 1;
   margin-right: 5px;

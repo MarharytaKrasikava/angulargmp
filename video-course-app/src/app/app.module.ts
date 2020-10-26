@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { CoursesComponent } from './courses/courses.component';
 import { BreadcrumpsComponent } from './breadcrumps/breadcrumps.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CourseComponent } from './courses/course/course.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     SearchComponent,
     CoursesComponent,
-    BreadcrumpsComponent
+    BreadcrumpsComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

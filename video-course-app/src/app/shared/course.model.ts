@@ -1,4 +1,4 @@
-interface CourseInterface {
+export interface CourseInterface {
   id: string;
   title: string;
   creationDate: Date;
@@ -6,7 +6,7 @@ interface CourseInterface {
   description: string;
 }
 
-class Course implements CourseInterface {
+export class Course implements CourseInterface {
   public id: string;
   public title: string;
   public creationDate: Date;
