@@ -4,7 +4,7 @@ interface UserInterface {
   lastName: string;
 }
 
-class User implements UserInterface {
+export class User implements UserInterface {
   public id: string;
   public firstName: string;
   public lastName: string;

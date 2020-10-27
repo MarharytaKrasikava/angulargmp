@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SearchComponent } from './search/search.component';
-import { CoursesComponent } from './courses/courses.component';
-import { BreadcrumpsComponent } from './breadcrumps/breadcrumps.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CourseComponent } from './courses/course/course.component';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './shared/components';
+import { FooterComponent } from './shared/components';
+import { BreadcrumbsComponent } from './shared/components';
+import { SearchComponent } from './video-courses';
+import { CourseComponent } from './video-courses';
+import { CoursesComponent } from './video-courses';
+import { VideoCoursesComponent } from './video-courses';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,9 @@ import { CourseComponent } from './courses/course/course.component';
     FooterComponent,
     SearchComponent,
     CoursesComponent,
-    BreadcrumpsComponent,
-    CourseComponent
+    BreadcrumbsComponent,
+    CourseComponent,
+    VideoCoursesComponent
   ],
   imports: [
     BrowserModule,

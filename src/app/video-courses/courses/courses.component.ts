@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Course } from '../shared/course.model';
+import { Course } from '../../shared/models';
 
 @Component({
   selector: 'app-courses',

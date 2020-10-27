@@ -6,11 +6,19 @@ body {
   margin: 0;
 }
 
-app-root {
+app-video-courses {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto Condensed', sans-serif;
   height: 100%;
+}
+
+app-header {
+  padding: 15px 20px 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #615e5e;
+  color: white;
 }
 
 button {

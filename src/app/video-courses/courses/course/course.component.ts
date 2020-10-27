@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Course } from '../../shared/course.model';
+import { Course } from '../../../shared/models';
 import { faClock, faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 
