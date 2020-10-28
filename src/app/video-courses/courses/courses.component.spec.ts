@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { CourseComponent } from './course/course.component';
 import { CoursesComponent } from './courses.component';
 
 describe('CoursesComponent', () => {
@@ -8,7 +10,8 @@ describe('CoursesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursesComponent ]
+      imports: [FontAwesomeModule],
+      declarations: [ CoursesComponent, CourseComponent ]
     })
     .compileComponents();
   });
@@ -21,5 +24,19 @@ describe('CoursesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render all course items', () => {
+    const courseItemsHeaders = fixture.debugElement.nativeElement.querySelectorAll('.course__header');
+    const courseItemsBodies = fixture.debugElement.nativeElement.querySelectorAll('.course__body');
+    expect(courseItemsHeaders.length).toBe(2);
+    expect(courseItemsBodies.length).toBe(2);
+  });
+
+  it('should render all course items', () => {
+    spyOn(console, 'log');
+    const loadButton = fixture.debugElement.nativeElement.querySelector('.courses__load-more button');
+    loadButton.click();
+    expect(console.log).toHaveBeenCalledWith('loaded successfully');
   });
 });
