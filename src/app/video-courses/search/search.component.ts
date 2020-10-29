@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-  searchIcon = faSearch;
+export class SearchComponent {
+  public searchIcon: IconDefinition = faSearch;
 
-  inputValue = '';
+  public inputValue: string = '';
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  onClick(): void {
+  public onClick(): void {
     console.log(this.inputValue);
   }
 

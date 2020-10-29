@@ -29,8 +29,8 @@ describe('SearchComponent', () => {
 
   it('should log input value into console', () => {
     spyOn(console, 'log');
-    const input = fixture.debugElement.nativeElement.querySelector('input');
-    const button = fixture.debugElement.nativeElement.querySelector('button');
+    const input: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('input');
+    const button: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('button');
     fixture.detectChanges();
     input.value = 'test value';
     input.dispatchEvent(new Event('input'));

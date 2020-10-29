@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Course } from '../../../shared/models';
 import { faClock, faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
-import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course',
@@ -9,27 +9,27 @@ import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit, OnChanges {
-  durationIcon = faClock;
-  dateIcon = faCalendarAlt;
-  editIcon = faPencilAlt;
-  deleteIcon = faTrash;
+  @Output() private courseDeleted: EventEmitter<string> = new EventEmitter<string>();
+  @Input() public course: Course;
 
-  @Input() course: Course;
-  @Output() courseDeleted = new EventEmitter<string>();
+  public durationIcon: IconDefinition = faClock;
+  public dateIcon: IconDefinition = faCalendarAlt;
+  public editIcon: IconDefinition = faPencilAlt;
+  public deleteIcon: IconDefinition = faTrash;
 
   constructor() {
     console.log('constructor called');
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     console.log('initiolized');
   }
 
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     console.log('changed');
   }
 
-  onDelete(): void {
+  public onDelete(): void {
     this.courseDeleted.emit(this.course.id);
   }
 

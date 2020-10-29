@@ -8,7 +8,7 @@ import { Course } from '../../../shared/models';
 describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
-  let courseHtml;
+  let courseHtml: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -61,11 +61,11 @@ describe('CourseComponent', () => {
   });
 
   it('should emit correct id', () => {
-    let selectedId;
+    let selectedId: string;
     component.courseDeleted.subscribe((id: string) => {
       selectedId = id;
     });
-    const deleteButton = courseHtml.querySelector('.blue-button');
+    const deleteButton: HTMLButtonElement = courseHtml.querySelector('.blue-button');
     deleteButton.click();
     expect(selectedId).toBe(component.course.id);
   });

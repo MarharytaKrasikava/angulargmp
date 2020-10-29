@@ -27,15 +27,15 @@ describe('CoursesComponent', () => {
   });
 
   it('should render all course items', () => {
-    const courseItemsHeaders = fixture.debugElement.nativeElement.querySelectorAll('.course__header');
-    const courseItemsBodies = fixture.debugElement.nativeElement.querySelectorAll('.course__body');
+    const courseItemsHeaders: HTMLCollection = fixture.debugElement.nativeElement.querySelectorAll('.course__header');
+    const courseItemsBodies: HTMLCollection = fixture.debugElement.nativeElement.querySelectorAll('.course__body');
     expect(courseItemsHeaders.length).toBe(2);
     expect(courseItemsBodies.length).toBe(2);
   });
 
   it('should render all course items', () => {
     spyOn(console, 'log');
-    const loadButton = fixture.debugElement.nativeElement.querySelector('.courses__load-more button');
+    const loadButton: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('.courses__load-more button');
     loadButton.click();
     expect(console.log).toHaveBeenCalledWith('loaded successfully');
   });

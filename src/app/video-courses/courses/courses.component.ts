@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Course } from '../../shared/models';
 
 @Component({
@@ -7,13 +7,11 @@ import { Course } from '../../shared/models';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
 })
-export class CoursesComponent implements OnInit {
-  courses: Course[] = [];
-  addCourseIcon = faPlus;
+export class CoursesComponent {
+  public courses: Course[] = [];
+  public addCourseIcon: IconDefinition = faPlus;
 
-  constructor() {}
-
-  ngOnInit(): void {
+  private ngOnInit(): void {
     this.courses = [
       new Course(
         '1',
@@ -42,11 +40,11 @@ export class CoursesComponent implements OnInit {
     ];
   }
 
-  loadCourses(): void {
+  public loadCourses(): void {
     console.log('loaded successfully');
   }
 
-  onCourseDeleted(event): void {
+  public onCourseDeleted(event: string): void {
     console.log(event);
   }
 }
