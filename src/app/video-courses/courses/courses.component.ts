@@ -7,11 +7,11 @@ import { Course } from '../../shared/models';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
 
-  private ngOnInit(): void {
+  public ngOnInit(): void {
     this.courses = [
       new Course(
         '1',

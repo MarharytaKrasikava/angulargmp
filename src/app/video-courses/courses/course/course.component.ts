@@ -9,7 +9,7 @@ import { faPencilAlt, faTrash, IconDefinition } from '@fortawesome/free-solid-sv
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit, OnChanges {
-  @Output() private courseDeleted: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public courseDeleted: EventEmitter<string> = new EventEmitter<string>();
   @Input() public course: Course;
 
   public durationIcon: IconDefinition = faClock;
