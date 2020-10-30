@@ -36,7 +36,7 @@ describe('CourseComponent', () => {
   });
 
   it('should render course header correctly', () => {
-    expect(courseHtml.querySelector('h1').textContent).toBe(
+    expect(courseHtml.querySelector('.course__header__title').textContent).toBe(
       `Video Course ${component.course.id}: ${component.course.title}`
     );
   });
