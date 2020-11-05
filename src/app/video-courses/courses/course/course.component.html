@@ -1,0 +1,14 @@
+<div class="course__header">
+  <h2 class="course__header__title">Video Course {{ course.id }}: {{ course.title }}</h2>
+  <div class="course__header__detail">
+    <div><fa-icon [icon]="durationIcon"></fa-icon>{{course.duration}} min</div>
+    <div><fa-icon [icon]="dateIcon"></fa-icon>{{course.creationDate.toDateString()}}</div>
+  </div>
+</div>
+<div class="course__body">
+  <p class="course__body__description">{{course.description}}</p>
+  <div class="course__body__actions">
+    <a href="#" class="blue-link"><fa-icon [icon]="editIcon"></fa-icon>Edit</a>
+    <button type="button" (click)="onDelete()" class="blue-button"><fa-icon [icon]="deleteIcon"></fa-icon>Delete</button>
+  </div>
+</div>

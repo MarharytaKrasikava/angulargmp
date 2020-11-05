@@ -1,0 +1,30 @@
+.courses__add-course {
+  text-align: end;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.courses__list {
+  flex: 1;
+}
+
+.courses__load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.courses__load-more button {
+  color: #2594c5;
+  text-decoration: underline;
+}
+
+app-course {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 2px #b9b5b5;
+}

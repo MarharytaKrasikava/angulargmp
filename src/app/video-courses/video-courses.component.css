@@ -1,0 +1,15 @@
+app-search {
+  padding: 20px 60px;
+  background-color: #ececec;
+  display: flex;
+}
+
+app-courses {
+  padding: 20px 60px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex: 1;
+  background-color: #ececec;
+  align-items: center;
+}

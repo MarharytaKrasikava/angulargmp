@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+app-video-courses {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+}
+
+app-header {
+  padding: 15px 20px 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #615e5e;
+  color: white;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  border-radius: 3px;
+}
+
+.blue-button {
+  padding: 10px 15px;
+  background-color: #50b9e8;
+  color: white;
+  height: fit-content;
+  margin-left: 10px;
+}
+
+fa-icon {
+  line-height: 1;
+  margin-right: 5px;
+}

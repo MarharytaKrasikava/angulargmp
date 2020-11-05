@@ -1,0 +1,41 @@
+.course__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.course__header__detail {
+  display: flex;
+}
+
+.course__header__detail>div{
+  margin-left: 20px;
+}
+
+.course__body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.course__body__description {
+  width: 80%
+}
+
+.course__body__actions {
+  display: flex;
+  align-items: center;
+}
+
+.course__header__title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.blue-link {
+  padding: 10px 15px;
+  background-color: #50b9e8;
+  color: white;
+  border-radius: 3px;
+  height: fit-content;
+  text-decoration: none;
+  line-height: 1;
+}
