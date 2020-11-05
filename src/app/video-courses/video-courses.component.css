@@ -5,11 +5,12 @@ app-search {
 }
 
 app-courses {
-  padding: 20px 60px;
+  padding: 0 60px 20px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   flex: 1;
   background-color: #ececec;
   align-items: center;
+  overflow: hidden;
 }

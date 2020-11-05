@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './course.component';
 
 import { Course } from '../../../shared/models';
+import { DurationFormattingPipe } from './duration-formatting/duration-formatting.pipe';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -13,7 +14,7 @@ describe('CourseComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FontAwesomeModule],
-      declarations: [CourseComponent],
+      declarations: [CourseComponent, DurationFormattingPipe],
     }).compileComponents();
   });
 
@@ -25,7 +26,8 @@ describe('CourseComponent', () => {
       'Test Name',
       new Date('2020-08-09'),
       45,
-      'test description'
+      'test description',
+      false
     );
     fixture.detectChanges();
     courseHtml = fixture.debugElement.nativeElement;
@@ -45,13 +47,13 @@ describe('CourseComponent', () => {
     expect(
       courseHtml.querySelector('.course__header__detail').firstChild
         .textContent
-    ).toBe(`${component.course.duration} min`);
+    ).toBe(`${component.course.duration}min`);
   });
 
   it('should render course duration correctly', () => {
     expect(
       courseHtml.querySelector('.course__header__detail div+div').textContent
-    ).toBe(component.course.creationDate.toDateString());
+    ).toBe('Aug 9, 2020');
   });
 
   it('should render course duration correctly', () => {

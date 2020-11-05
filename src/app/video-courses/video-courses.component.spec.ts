@@ -8,7 +8,10 @@ import {
   HeaderComponent,
 } from '../shared/components';
 import { CourseComponent } from './courses/course/course.component';
+import { DurationFormattingPipe } from './courses/course/duration-formatting/duration-formatting.pipe';
 import { CoursesComponent } from './courses/courses.component';
+import { OrderByPipe } from './courses/order-by/order-by.pipe';
+import { FilterPipe } from './search/filter-pipe/filter.pipe';
 import { SearchComponent } from './search/search.component';
 
 import { VideoCoursesComponent } from './video-courses.component';
@@ -28,7 +31,9 @@ describe('VideoCoursesComponent', () => {
         CoursesComponent,
         CourseComponent,
         FooterComponent,
+        DurationFormattingPipe,
       ],
+      providers: [OrderByPipe, FilterPipe],
     }).compileComponents();
   });
 

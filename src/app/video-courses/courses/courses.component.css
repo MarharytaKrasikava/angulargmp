@@ -6,6 +6,8 @@
 
 .courses__list {
   flex: 1;
+  overflow: auto;
+  width: 100%;
 }
 
 .courses__load-more {
@@ -27,4 +29,15 @@ app-course {
   margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px 2px #b9b5b5;
+  border: 3px solid #b9b5b5;
+}
+
+.no-data-message {
+  padding: 20px 0;
+  text-align: center;
+  background-color: white;
+}
+
+.toprated {
+  background-color: #f5f9a4;
 }

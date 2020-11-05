@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,12 +7,13 @@ import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  @Output() public filterValueSet: EventEmitter<string> = new EventEmitter<string>();
   public searchIcon: IconDefinition = faSearch;
 
   public inputValue: string = '';
 
   public onClick(): void {
-    console.log(this.inputValue);
+    this.filterValueSet.emit(this.inputValue);
   }
 
 }
