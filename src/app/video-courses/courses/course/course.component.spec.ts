@@ -48,13 +48,13 @@ describe('CourseComponent', () => {
     ).toBe(`${component.course.duration} min`);
   });
 
-  it('should render course duration correctly', () => {
+  it('should render course date correctly', () => {
     expect(
       courseHtml.querySelector('.course__header__detail div+div').textContent
     ).toBe(component.course.creationDate.toDateString());
   });
 
-  it('should render course duration correctly', () => {
+  it('should render course description correctly', () => {
     expect(
       courseHtml.querySelector('.course__body__description').textContent
     ).toBe(component.course.description);
