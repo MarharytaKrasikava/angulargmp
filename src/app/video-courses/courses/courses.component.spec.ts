@@ -5,7 +5,7 @@ import { FilterPipe } from '../search/filter-pipe/filter.pipe';
 import { CourseComponent } from './course/course.component';
 import { DurationFormattingPipe } from './course/duration-formatting/duration-formatting.pipe';
 import { CoursesComponent } from './courses.component';
-import { mockedCourses } from './mockedCourses';
+import { mockedCourses } from '../video-courses-service/mockedCourses';
 import { OrderByPipe } from './order-by/order-by.pipe';
 
 describe('CoursesComponent', () => {
