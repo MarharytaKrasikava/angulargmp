@@ -1,0 +1,20 @@
+<div class="login-page">
+  <app-header></app-header>
+  <section class="login-page__main-section">
+    <div class="login-page__main-section__form">
+      <h1>Login</h1>
+      <div class="login-page__main-section__form__input">
+        <label for="login">Login</label>
+        <input type="text" [value]="loginValue || null" class="wide-input" placeholder="Enter login" id="login"
+          required />
+      </div>
+      <div class="login-page__main-section__form__input">
+        <label for="password">Password</label>
+        <input type="password" [value]="passwordValue || null" class="wide-input" placeholder="Enter password"
+          id="password" required />
+      </div>
+      <button (click)="authenticate()" class="wide-button">Log In</button>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</div>

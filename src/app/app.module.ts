@@ -21,6 +21,8 @@ import { FilterPipe } from './video-courses/search/filter-pipe/filter.pipe';
 import { VideoCoursesService } from './video-courses/video-courses-service/video-courses.service';
 import { DialogComponent } from './video-courses/courses/dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthService } from './shared/components/auth-service/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VideoCoursesComponent,
     DateHighlightDirective,
     DurationFormattingPipe,
-    DialogComponent
+    DialogComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDialogModule,
     BrowserAnimationsModule,
   ],
-  providers: [OrderByPipe, FilterPipe, VideoCoursesService],
+  providers: [OrderByPipe, FilterPipe, VideoCoursesService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

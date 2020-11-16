@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { Course } from 'src/app/shared/models';
 import { mockedCourses } from './mockedCourses';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class VideoCoursesService {
   private courses: Course[] = mockedCourses;
 
@@ -41,6 +38,8 @@ export class VideoCoursesService {
 
   public removeCourse(id: string): void {
     const index: number = this.courses.findIndex(course => course.id === id);
-    this.courses.splice(index, 1);
+    if (index !== -1) {
+      this.courses.splice(index, 1);
+    }
   }
 }
