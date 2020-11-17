@@ -41,3 +41,11 @@ app-course {
 .toprated {
   background-color: #f5f9a4;
 }
+
+.date-highlight-new {
+  border: 3px solid #94d447;
+}
+
+.date-highlight-upcomming {
+  border: 3px solid #50b9e8;
+}

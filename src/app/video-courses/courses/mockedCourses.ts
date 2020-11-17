@@ -17,7 +17,7 @@ export const mockedCourses: Course[] = [
   new Course(
     '2',
     'Angular',
-    new Date('2020-10-25'),
+    new Date('2020-11-16'),
     60,
     `Learn about where you can find course description, what
    information they include, how they work, and details about various

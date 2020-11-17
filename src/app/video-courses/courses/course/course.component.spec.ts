@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './course.component';
 
 import { Course } from '../../../shared/models';
-import { DurationFormattingPipe } from './duration-formatting/duration-formatting.pipe';
+import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;

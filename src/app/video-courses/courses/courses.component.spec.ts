@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FilterPipe } from '../search/filter-pipe/filter.pipe';
 
 import { CourseComponent } from './course/course.component';
-import { DurationFormattingPipe } from './course/duration-formatting/duration-formatting.pipe';
 import { CoursesComponent } from './courses.component';
+import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
+import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
+import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
+
 import { mockedCourses } from './mockedCourses';
-import { OrderByPipe } from './order-by/order-by.pipe';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;

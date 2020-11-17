@@ -8,13 +8,14 @@ import {
   HeaderComponent,
 } from '../shared/components';
 import { CourseComponent } from './courses/course/course.component';
-import { DurationFormattingPipe } from './courses/course/duration-formatting/duration-formatting.pipe';
 import { CoursesComponent } from './courses/courses.component';
-import { OrderByPipe } from './courses/order-by/order-by.pipe';
-import { FilterPipe } from './search/filter-pipe/filter.pipe';
 import { SearchComponent } from './search/search.component';
 
+import { DurationFormattingPipe } from '../shared/pipes/duration-formatting/duration-formatting.pipe';
+
 import { VideoCoursesComponent } from './video-courses.component';
+import { OrderByPipe } from '../shared/pipes/order-by/order-by.pipe';
+import { FilterPipe } from '../shared/pipes/filter-pipe/filter.pipe';
 
 describe('VideoCoursesComponent', () => {
   let component: VideoCoursesComponent;

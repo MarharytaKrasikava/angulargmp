@@ -1,10 +1,10 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Course } from '../../shared/models';
-import { FilterPipe } from '../search/filter-pipe/filter.pipe';
+import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
+import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
 
 import { mockedCourses } from './mockedCourses';
-import { OrderByPipe } from './order-by/order-by.pipe';
+import { Course } from '../../shared/models';
 
 @Component({
   selector: 'app-courses',
