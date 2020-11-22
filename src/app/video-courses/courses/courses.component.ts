@@ -4,8 +4,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../../shared/models';
 
 import { VideoCoursesService } from '../video-courses-service/video-courses.service';
-import { OrderByPipe } from './order-by/order-by.pipe';
-import { FilterPipe } from '../search/filter-pipe/filter.pipe';
+import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
+import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({

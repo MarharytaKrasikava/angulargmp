@@ -4,7 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './course.component';
 
 import { Course } from '../../../shared/models';
-import { DurationFormattingPipe } from './duration-formatting/duration-formatting.pipe';
+import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
+import { Component } from '@angular/core';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -14,7 +15,7 @@ describe('CourseComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FontAwesomeModule],
-      declarations: [CourseComponent, DurationFormattingPipe],
+      declarations: [CourseComponent, TestCoursesComponent, DurationFormattingPipe],
     }).compileComponents();
   });
 
@@ -50,13 +51,13 @@ describe('CourseComponent', () => {
     ).toBe(`${component.course.duration}min`);
   });
 
-  it('should render course duration correctly', () => {
+  it('should render course date correctly', () => {
     expect(
       courseHtml.querySelector('.course__header__detail div+div').textContent
     ).toBe('Aug 9, 2020');
   });
 
-  it('should render course duration correctly', () => {
+  it('should render course description correctly', () => {
     expect(
       courseHtml.querySelector('.course__body__description').textContent
     ).toBe(component.course.description);
@@ -67,8 +68,75 @@ describe('CourseComponent', () => {
     component.courseDeleted.subscribe((id: string) => {
       selectedId = id;
     });
-    const deleteButton: HTMLButtonElement = courseHtml.querySelector('.blue-button');
+    const deleteButton: HTMLButtonElement = courseHtml.querySelector(
+      '.blue-button'
+    );
     deleteButton.click();
     expect(selectedId).toBe(component.course.id);
+  });
+});
+
+@Component({
+  template: `<app-course
+    [course]="courseItem"
+    (courseDeleted)="onCourseDeleted($event)"
+  ></app-course>`,
+})
+export class TestCoursesComponent {
+  public courseItem: Course = new Course(
+    '5',
+    'Name tag',
+    new Date('2020-08-09'),
+    45,
+    `Test Description`,
+    false
+  );
+
+  public onCourseDeleted(event: string): void {
+    console.log(event);
+  }
+}
+
+describe('CourseComponent in Host Component', () => {
+
+  let hostComponent: TestCoursesComponent;
+  let fixture: ComponentFixture<TestCoursesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [CourseComponent, TestCoursesComponent, DurationFormattingPipe],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestCoursesComponent);
+    hostComponent = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create host component', () => {
+    expect(hostComponent).toBeTruthy();
+  });
+
+  it('should hangle delete event correctly', () => {
+    spyOn(console, 'log');
+    const deleteButton: HTMLButtonElement = fixture.nativeElement.querySelector('.blue-button');
+    deleteButton.click();
+
+    expect(console.log).toHaveBeenCalledWith('5');
+  });
+});
+
+describe('CourseComponent as a class', () => {
+
+  it('should render course header correctly', () => {
+    spyOn(console, 'log');
+    const courseClass: CourseComponent = new CourseComponent();
+
+    expect(console.log).toHaveBeenCalledWith('constructor called');
+
+    courseClass.ngOnInit();
+
+    expect(console.log).toHaveBeenCalledWith('initiolized');
   });
 });

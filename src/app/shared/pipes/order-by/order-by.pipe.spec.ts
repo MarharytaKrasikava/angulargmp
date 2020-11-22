@@ -1,4 +1,4 @@
-import { mockedCourses } from '../../video-courses-service/mockedCourses';
+import { mockedCourses } from '../../../video-courses/video-courses-service/mockedCourses';
 import { OrderByPipe } from './order-by.pipe';
 
 describe('OrderByPipe', () => {
