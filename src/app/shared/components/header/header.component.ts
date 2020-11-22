@@ -11,5 +11,4 @@ export class HeaderComponent {
   public logoIcon: IconDefinition = faPlayCircle;
   public userIcon: IconDefinition = faUser;
   public logOffIcon: IconDefinition = faSignOutAlt;
-
 }

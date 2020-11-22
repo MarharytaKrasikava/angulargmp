@@ -6,7 +6,7 @@ import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   public searchIcon: IconDefinition = faSearch;
 
   public inputValue: string = '';
