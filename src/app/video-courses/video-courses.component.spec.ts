@@ -1,12 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import {
   BreadcrumbsComponent,
   FooterComponent,
   HeaderComponent,
 } from '../shared/components';
+
 import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SearchComponent } from './search/search.component';
@@ -23,7 +25,7 @@ describe('VideoCoursesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FontAwesomeModule, FormsModule],
+      imports: [FontAwesomeModule, FormsModule, MatDialogModule],
       declarations: [
         VideoCoursesComponent,
         HeaderComponent,

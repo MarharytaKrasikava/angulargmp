@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
 import { UserInfo } from '../../models/userInfo.model';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   public isLoggesIn: boolean = false;
 
@@ -15,13 +19,24 @@ export class AuthService {
   }
 
   public logIn(): void {
-    localStorage.setItem('userData', JSON.stringify({ login: 'myLogin', password: 'myPassword', token: 'myToken' }));
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({
+        login: 'myLogin',
+        password: 'myPassword',
+        token: 'myToken',
+      })
+    );
+
+    this.isLoggesIn = true;
 
     console.log('Logged in successfully');
   }
 
   public logOut(): void {
-    if (localStorage.getItem('userData')) { localStorage.removeItem('userData'); }
+    if (localStorage.getItem('userData')) {
+      localStorage.removeItem('userData');
+    }
 
     console.log('Logged out');
   }

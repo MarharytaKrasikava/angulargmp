@@ -14,22 +14,15 @@ import { SearchComponent } from './video-courses';
 import { CourseComponent } from './video-courses';
 import { CoursesComponent } from './video-courses';
 import { VideoCoursesComponent } from './video-courses';
-<<<<<<< HEAD
-import { DateHighlightDirective } from './video-courses/courses/course/date-highlight/date-highlight.directive';
-import { DurationFormattingPipe } from './video-courses/courses/course/duration-formatting/duration-formatting.pipe';
-import { OrderByPipe } from './video-courses/courses/order-by/order-by.pipe';
-import { FilterPipe } from './video-courses/search/filter-pipe/filter.pipe';
 import { VideoCoursesService } from './video-courses/video-courses-service/video-courses.service';
 import { DialogComponent } from './video-courses/courses/dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthService } from './shared/components/auth-service/auth.service';
-=======
 import { DateHighlightDirective } from './shared/directives/date-highlight/date-highlight.directive';
 import { DurationFormattingPipe } from './shared/pipes/duration-formatting/duration-formatting.pipe';
 import { OrderByPipe } from './shared/pipes/order-by/order-by.pipe';
 import { FilterPipe } from './shared/pipes/filter-pipe/filter.pipe';
->>>>>>> e56969cb7df81cfbcac06e437e8c4cb0f8dd629a
 
 @NgModule({
   declarations: [

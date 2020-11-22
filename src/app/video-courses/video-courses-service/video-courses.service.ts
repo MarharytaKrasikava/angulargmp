@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Course } from 'src/app/shared/models';
 import { mockedCourses } from './mockedCourses';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class VideoCoursesService {
   private courses: Course[] = mockedCourses;
 
