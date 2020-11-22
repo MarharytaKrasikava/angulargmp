@@ -69,7 +69,7 @@ describe('CourseComponent', () => {
       selectedId = id;
     });
     const deleteButton: HTMLButtonElement = courseHtml.querySelector(
-      '.blue-button'
+      '.wide-button'
     );
     deleteButton.click();
     expect(selectedId).toBe(component.course.id);
@@ -120,7 +120,7 @@ describe('CourseComponent in Host Component', () => {
 
   it('should hangle delete event correctly', () => {
     spyOn(console, 'log');
-    const deleteButton: HTMLButtonElement = fixture.nativeElement.querySelector('.blue-button');
+    const deleteButton: HTMLButtonElement = fixture.nativeElement.querySelector('.wide-button');
     deleteButton.click();
 
     expect(console.log).toHaveBeenCalledWith('5');

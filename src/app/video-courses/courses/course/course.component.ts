@@ -11,6 +11,7 @@ import { faPencilAlt, faTrash, faStar, IconDefinition } from '@fortawesome/free-
 export class CourseComponent implements OnInit, OnChanges {
   @Output() public courseDeleted: EventEmitter<string> = new EventEmitter<string>();
   @Input() public course: Course;
+  @Input() public creationDate: Date;
 
   public durationIcon: IconDefinition = faClock;
   public dateIcon: IconDefinition = faCalendarAlt;
