@@ -10,6 +10,7 @@ import { SearchComponent } from './search.component';
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let courseHtml: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,20 +22,24 @@ describe('SearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
+    courseHtml = fixture.debugElement.nativeElement;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should log input value into console', () => {
-    spyOn(console, 'log');
-    const input: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('input');
-    const button: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('button');
+  it('should emit correct filter value', () => {
+    let actualValue: string;
+    component.filterValueSet.subscribe((value: string) => {
+      actualValue = value;
+    });
+    const searchButton: HTMLButtonElement = courseHtml.querySelector('.search__button');
+    const input: HTMLInputElement = courseHtml.querySelector('input');
     fixture.detectChanges();
     input.value = 'test value';
     input.dispatchEvent(new Event('input'));
-    button.click();
-    expect(console.log).toHaveBeenCalledWith('test value');
+    searchButton.click();
+    expect(actualValue).toBe('test value');
   });
 });

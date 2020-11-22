@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from './course.component';
 
 import { Course } from '../../../shared/models';
+import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
 import { Component } from '@angular/core';
 
 describe('CourseComponent', () => {
@@ -14,7 +15,7 @@ describe('CourseComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FontAwesomeModule],
-      declarations: [CourseComponent, TestCoursesComponent],
+      declarations: [CourseComponent, TestCoursesComponent, DurationFormattingPipe],
     }).compileComponents();
   });
 
@@ -26,7 +27,8 @@ describe('CourseComponent', () => {
       'Test Name',
       new Date('2020-08-09'),
       45,
-      'test description'
+      'test description',
+      false
     );
     fixture.detectChanges();
     courseHtml = fixture.debugElement.nativeElement;
@@ -44,14 +46,15 @@ describe('CourseComponent', () => {
 
   it('should render course duration correctly', () => {
     expect(
-      courseHtml.querySelector('.course__header__detail').firstChild.textContent
-    ).toBe(`${component.course.duration} min`);
+      courseHtml.querySelector('.course__header__detail').firstChild
+        .textContent
+    ).toBe(`${component.course.duration}min`);
   });
 
   it('should render course date correctly', () => {
     expect(
       courseHtml.querySelector('.course__header__detail div+div').textContent
-    ).toBe(component.course.creationDate.toDateString());
+    ).toBe('Aug 9, 2020');
   });
 
   it('should render course description correctly', () => {
@@ -85,7 +88,8 @@ export class TestCoursesComponent {
     'Name tag',
     new Date('2020-08-09'),
     45,
-    `Test Description`
+    `Test Description`,
+    false
   );
 
   public onCourseDeleted(event: string): void {
@@ -100,7 +104,7 @@ describe('CourseComponent in Host Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CourseComponent, TestCoursesComponent],
+      declarations: [CourseComponent, TestCoursesComponent, DurationFormattingPipe],
     }).compileComponents();
   });
 

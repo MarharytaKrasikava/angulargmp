@@ -13,6 +13,10 @@ import { SearchComponent } from './video-courses';
 import { CourseComponent } from './video-courses';
 import { CoursesComponent } from './video-courses';
 import { VideoCoursesComponent } from './video-courses';
+import { DateHighlightDirective } from './shared/directives/date-highlight/date-highlight.directive';
+import { DurationFormattingPipe } from './shared/pipes/duration-formatting/duration-formatting.pipe';
+import { OrderByPipe } from './shared/pipes/order-by/order-by.pipe';
+import { FilterPipe } from './shared/pipes/filter-pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,15 +27,12 @@ import { VideoCoursesComponent } from './video-courses';
     CoursesComponent,
     BreadcrumbsComponent,
     CourseComponent,
-    VideoCoursesComponent
+    VideoCoursesComponent,
+    DateHighlightDirective,
+    DurationFormattingPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    FontAwesomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, FontAwesomeModule],
+  providers: [OrderByPipe, FilterPipe],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

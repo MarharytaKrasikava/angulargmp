@@ -3,6 +3,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CourseComponent } from './course/course.component';
 import { CoursesComponent } from './courses.component';
+import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
+import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
+import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
+
+import { mockedCourses } from './mockedCourses';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
@@ -11,7 +16,8 @@ describe('CoursesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FontAwesomeModule],
-      declarations: [ CoursesComponent, CourseComponent ]
+      declarations: [ CoursesComponent, CourseComponent, DurationFormattingPipe ],
+      providers: [OrderByPipe, FilterPipe],
     })
     .compileComponents();
   });
@@ -29,8 +35,8 @@ describe('CoursesComponent', () => {
   it('should render all course items', () => {
     const courseItemsHeaders: HTMLCollection = fixture.debugElement.nativeElement.querySelectorAll('.course__header');
     const courseItemsBodies: HTMLCollection = fixture.debugElement.nativeElement.querySelectorAll('.course__body');
-    expect(courseItemsHeaders.length).toBe(2);
-    expect(courseItemsBodies.length).toBe(2);
+    expect(courseItemsHeaders.length).toBe(mockedCourses.length);
+    expect(courseItemsBodies.length).toBe(mockedCourses.length);
   });
 
   it('should render all course items', () => {

@@ -4,8 +4,14 @@
   </button>
 </div>
 <div class="courses__list">
-  <app-course *ngFor="let courseItem of courses" [course]="courseItem" (courseDeleted)="onCourseDeleted($event)">
-  </app-course>
+  <div *ngIf="courses?.length">
+    <app-course *ngFor="let courseItem of courses" [course]="courseItem" [creationDate]="courseItem.creationDate"
+      appDateHighlight (courseDeleted)="onCourseDeleted($event)" [ngClass]="{toprated: courseItem.topRated}">
+    </app-course>
+  </div>
+  <div *ngIf="!courses?.length" class="no-data-message">
+    {{ 'No data. Feel free to add a new course' | uppercase}}
+  </div>
 </div>
 <div class="courses__load-more">
   <button type="button" (click)="loadCourses()">Load more</button>

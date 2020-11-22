@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Course } from '../../../shared/models';
 import { faClock, faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
-import { faPencilAlt, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faTrash, faStar, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course',
@@ -16,6 +16,7 @@ export class CourseComponent implements OnInit, OnChanges {
   public dateIcon: IconDefinition = faCalendarAlt;
   public editIcon: IconDefinition = faPencilAlt;
   public deleteIcon: IconDefinition = faTrash;
+  public starIcon: IconDefinition = faStar;
 
   constructor() {
     console.log('constructor called');

@@ -11,7 +11,11 @@ import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SearchComponent } from './search/search.component';
 
+import { DurationFormattingPipe } from '../shared/pipes/duration-formatting/duration-formatting.pipe';
+
 import { VideoCoursesComponent } from './video-courses.component';
+import { OrderByPipe } from '../shared/pipes/order-by/order-by.pipe';
+import { FilterPipe } from '../shared/pipes/filter-pipe/filter.pipe';
 
 describe('VideoCoursesComponent', () => {
   let component: VideoCoursesComponent;
@@ -28,7 +32,9 @@ describe('VideoCoursesComponent', () => {
         CoursesComponent,
         CourseComponent,
         FooterComponent,
+        DurationFormattingPipe,
       ],
+      providers: [OrderByPipe, FilterPipe],
     }).compileComponents();
   });
 
