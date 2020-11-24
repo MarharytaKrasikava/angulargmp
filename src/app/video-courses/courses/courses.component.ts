@@ -44,6 +44,8 @@ export class CoursesComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(() => {
       this.coursesService.removeCourse(id);
+      this.courses = this.orderBy.transform(this.coursesService.getCourses());
     });
+
   }
 }

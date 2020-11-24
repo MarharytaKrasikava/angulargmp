@@ -1,0 +1,22 @@
+<app-header></app-header>
+<section class="input-page__main-section">
+  <div class="input-page__main-section__form new-course">
+    <h1>New course</h1>
+    <div class="new-course__form-input">
+      <label for="title" class="input-label">Title</label>
+      <input class="wide-input long-input" type="text" placeholder="Video Course Title" id="title"/>
+    </div>
+    <div class="new-course__form-input">
+      <label for="description" class="input-label">Description</label>
+      <textarea class="wide-input long-input" placeholder="Video Course Description" id="description"></textarea>
+    </div>
+    <app-date-input></app-date-input>
+    <app-duration-input></app-duration-input>
+    <app-authors-input></app-authors-input>
+    <div class="new-course__buttons">
+      <button class="wide-button" (click)="onCancel()">Cancel</button>
+      <button class="new-course__buttons__save wide-button" (click)="onCreate()">Save</button>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
