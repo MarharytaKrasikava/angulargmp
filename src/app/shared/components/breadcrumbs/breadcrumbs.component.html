@@ -1,1 +1,4 @@
-<div class="breadcrumbs">Courses</div>
+<section class="breadcrumbs">
+  <a routerLink="/courses">Courses</a>
+  <span *ngIf="courseTitle"> / {{courseTitle}}</span>
+</section>

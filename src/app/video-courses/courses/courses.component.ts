@@ -3,7 +3,7 @@ import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../../shared/models';
 
-import { VideoCoursesService } from '../video-courses-service/video-courses.service';
+import { VideoCoursesService } from '../../shared/services/video-courses-service/video-courses.service';
 import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
 import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
 import { DialogComponent } from './dialog/dialog.component';

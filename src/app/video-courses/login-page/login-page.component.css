@@ -7,8 +7,15 @@
 .login-page__main-section__form__input {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
+}
+
+.login-page__main-section__form__login-button {
+  margin-top: 20px;
+  align-self: flex-end;
+  background-color: #94d447;
 }
 
 .login-page__main-section__form__input input {
-  margin-top: 10px;
+  margin: 0;
 }

@@ -14,11 +14,9 @@ import { SearchComponent } from './video-courses';
 import { CourseComponent } from './video-courses';
 import { CoursesComponent } from './video-courses';
 import { VideoCoursesComponent } from './video-courses';
-import { VideoCoursesService } from './video-courses/video-courses-service/video-courses.service';
 import { DialogComponent } from './video-courses/courses/dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { AuthService } from './shared/components/auth-service/auth.service';
+import { LoginPageComponent } from './video-courses/login-page/login-page.component';
 import { DateHighlightDirective } from './shared/directives/date-highlight/date-highlight.directive';
 import { DurationFormattingPipe } from './shared/pipes/duration-formatting/duration-formatting.pipe';
 import { OrderByPipe } from './shared/pipes/order-by/order-by.pipe';
@@ -27,6 +25,9 @@ import { NewCourseComponent } from './video-courses/new-course/new-course.compon
 import { DateInputComponent } from './video-courses/new-course/date-input/date-input.component';
 import { DurationInputComponent } from './video-courses/new-course/duration-input/duration-input.component';
 import { AuthorsInputComponent } from './video-courses/new-course/authors-input/authors-input.component';
+import { PageNotFoundComponent } from './video-courses/page-not-found/page-not-found.component';
+import { VideoCoursesService } from './shared/services/video-courses-service/video-courses.service';
+import { AuthService } from './shared/services/auth-service/auth.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AuthorsInputComponent } from './video-courses/new-course/authors-input/
     NewCourseComponent,
     DateInputComponent,
     DurationInputComponent,
-    AuthorsInputComponent
+    AuthorsInputComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

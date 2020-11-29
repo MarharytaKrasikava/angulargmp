@@ -15,6 +15,7 @@ import {
   faStar,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course',

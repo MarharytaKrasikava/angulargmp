@@ -22,6 +22,7 @@ app-header {
   background-color: #615e5e;
   color: white;
   font-size: 16px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 app-new-course {
@@ -33,7 +34,7 @@ app-new-course {
 button {
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Roboto Condensed', sans-serif;
   border-radius: 3px;
 }

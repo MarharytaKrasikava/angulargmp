@@ -38,7 +38,7 @@ export class AuthService {
       localStorage.removeItem('userData');
     }
 
-    console.log('Logged out');
+    this.isLoggesIn = false;
   }
 
   public getUserInfo(): UserInfo {
