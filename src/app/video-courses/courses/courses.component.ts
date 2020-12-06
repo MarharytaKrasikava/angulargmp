@@ -14,6 +14,8 @@ import { DialogComponent } from './dialog/dialog.component';
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit, OnChanges {
+  private loadAmount: number = 3;
+
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
   @Input() public filterValue: string = '';
@@ -25,8 +27,17 @@ export class CoursesComponent implements OnInit, OnChanges {
     public dialog: MatDialog
   ) {}
 
+  private receiveCourses(): void {
+    this.coursesService.getCourses(0, this.loadAmount).subscribe((data: Course[]) => {
+      if (data) {
+        this.courses = data;
+      }
+    });
+  }
+
   public ngOnInit(): void {
-    this.courses = this.orderBy.transform(this.coursesService.getCourses());
+    this.receiveCourses();
+    this.courses = this.orderBy.transform(this.courses);
   }
 
   public ngOnChanges(): void {
@@ -34,17 +45,18 @@ export class CoursesComponent implements OnInit, OnChanges {
   }
 
   public loadCourses(): void {
-    console.log('loaded successfully');
+    this.loadAmount += 3;
+    this.receiveCourses();
   }
 
-  public onCourseDeleted(id: string): void {
+  public onCourseDeleted(id: number): void {
     const dialogRef: MatDialogRef<DialogComponent> = this.dialog.open(DialogComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(() => {
       this.coursesService.removeCourse(id);
-      this.courses = this.orderBy.transform(this.coursesService.getCourses());
+      this.courses = this.orderBy.transform(this.coursesService.courses);
     });
 
   }

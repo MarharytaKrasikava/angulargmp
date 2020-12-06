@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components';
@@ -56,6 +57,7 @@ import { AuthService } from './shared/services/auth-service/auth.service';
     FontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [OrderByPipe, FilterPipe, VideoCoursesService, AuthService],
   bootstrap: [AppComponent],

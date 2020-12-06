@@ -15,7 +15,7 @@ export class NewCourseComponent implements OnInit {
   constructor(private route: ActivatedRoute, private courseService: VideoCoursesService, private router: Router) {}
 
   public ngOnInit(): void {
-    const id: string = this.route.snapshot.params.id;
+    const id: number = this.route.snapshot.params.id;
     this.course = this.courseService.getCourse(id);
     if (this.course) {
       this.showBreadCrumbs = true;

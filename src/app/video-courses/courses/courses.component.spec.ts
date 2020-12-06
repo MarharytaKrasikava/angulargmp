@@ -7,8 +7,7 @@ import { CoursesComponent } from './courses.component';
 import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
 import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
 import { DurationFormattingPipe } from 'src/app/shared/pipes/duration-formatting/duration-formatting.pipe';
-
-import { mockedCourses } from '../video-courses-service/mockedCourses';
+import { mockedCourses } from 'src/app/shared/services/video-courses-service/mockedCourses';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;

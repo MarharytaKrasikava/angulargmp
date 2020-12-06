@@ -1,26 +1,35 @@
+import { strict } from 'assert';
+
+export interface Author {
+  id: number;
+  name: string;
+}
 export interface CourseInterface {
-  id: string;
-  title: string;
-  creationDate: Date;
-  duration: number;
+  id: number;
+  name: string;
+  date: string;
+  length: number;
   description: string;
-  topRated: boolean;
+  isTopRated: boolean;
+  authors: Author[];
 }
 
 export class Course implements CourseInterface {
-  public id: string;
-  public title: string;
-  public creationDate: Date;
-  public duration: number;
+  public id: number;
+  public name: string;
+  public date: string;
+  public length: number;
   public description: string;
-  public topRated: boolean;
+  public isTopRated: boolean;
+  public authors: Author[];
 
-  constructor(id: string, title: string, creationDate: Date, duration: number, description: string, topR: boolean) {
+  constructor(id: number, name: string, date: string, length: number, description: string, topR: boolean, authors: Author[]) {
     this.id = id;
-    this.title = title;
-    this.creationDate = creationDate;
-    this.duration = duration;
+    this.name = name;
+    this.date = date;
+    this.length = length;
     this.description = description;
-    this.topRated = topR;
+    this.isTopRated = topR;
+    this.authors = authors;
   }
 }

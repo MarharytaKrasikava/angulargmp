@@ -7,7 +7,7 @@ import { AuthService } from './shared/services/auth-service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public title: string = 'video-course-app';
+  public name: string = 'video-course-app';
   public isAuthenticated: boolean = false;
 
   constructor(private authService: AuthService) { }

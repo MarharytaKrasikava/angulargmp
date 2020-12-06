@@ -9,6 +9,6 @@ describe('OrderByPipe', () => {
 
   it('create an instance', () => {
     const pipe: OrderByPipe = new OrderByPipe();
-    expect(pipe.transform(mockedCourses)[0].creationDate).toBe(mockedCourses[2].creationDate);
+    expect(pipe.transform(mockedCourses)[0].date).toBe(mockedCourses[2].date);
   });
 });

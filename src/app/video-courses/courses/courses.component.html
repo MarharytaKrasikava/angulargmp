@@ -5,8 +5,8 @@
 </div>
 <div class="courses__list">
   <div *ngIf="courses?.length">
-    <app-course *ngFor="let courseItem of courses" [course]="courseItem" [creationDate]="courseItem.creationDate"
-      appDateHighlight (courseDeleted)="onCourseDeleted($event)" [ngClass]="{toprated: courseItem.topRated}">
+    <app-course *ngFor="let courseItem of courses" [course]="courseItem" [date]="courseItem.date"
+      appDateHighlight (courseDeleted)="onCourseDeleted($event)" [ngClass]="{isTopRated: courseItem.isTopRated}">
     </app-course>
   </div>
   <div *ngIf="!courses?.length" class="no-data-message">

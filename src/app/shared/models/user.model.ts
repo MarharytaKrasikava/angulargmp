@@ -1,15 +1,15 @@
 interface UserInterface {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
 }
 
 export class User implements UserInterface {
-  public id: string;
+  public id: number;
   public firstName: string;
   public lastName: string;
 
-  constructor(id: string, firstName: string, lastName: string) {
+  constructor(id: number, firstName: string, lastName: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

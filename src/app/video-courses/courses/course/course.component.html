@@ -1,10 +1,10 @@
 <div class="course__header">
-  <h2 class="course__header__title">Video Course {{course.id}}: {{course.title}}<fa-icon [icon]="starIcon"
-      *ngIf="course.topRated"></fa-icon>
+  <h2 class="course__header__name">Video Course {{course.id}}: {{course.name}}<fa-icon [icon]="starIcon"
+      *ngIf="course.isTopRated"></fa-icon>
   </h2>
   <div class="course__header__detail">
-    <div><fa-icon [icon]="durationIcon"></fa-icon>{{course.duration | durationPipe}}</div>
-    <div><fa-icon [icon]="dateIcon"></fa-icon>{{course.creationDate | date}}</div>
+    <div><fa-icon [icon]="durationIcon"></fa-icon>{{course.length | durationPipe}}</div>
+    <div><fa-icon [icon]="dateIcon"></fa-icon>{{course.date | date}}</div>
   </div>
 </div>
 <div class="course__body">

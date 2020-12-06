@@ -1,45 +1,50 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Course } from 'src/app/shared/models';
-import { mockedCourses } from './mockedCourses';
+import { Observable } from 'rxjs';
+import { Course, Author } from 'src/app/shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoCoursesService {
-  private courses: Course[] = mockedCourses;
+  public courses: Course[];
 
-  public getCourses(): Course[] {
-    return this.courses.slice();
+  constructor(private http: HttpClient) {}
+
+  public getCourses(startCount: number, loadAmount: number): Observable<Course[]> {
+    return this.http.get<Course[]>(`http://localhost:3004/courses?start=${startCount}&count=${loadAmount}`);
   }
 
   public createCourse(
-    id: string,
-    title: string,
-    creationDate: Date,
-    duration: number,
+    id: number,
+    name: string,
+    date: string,
+    length: number,
     description: string,
-    topR: boolean
+    topR: boolean,
+    authors: Author[]
   ): Course {
-    return new Course(id, title, creationDate, duration, description, topR);
+    return new Course(id, name, date, length, description, topR, authors);
   }
 
-  public getCourse(id: string): Course {
+  public getCourse(id: number): Course {
     return this.courses.find((course) => course.id === id);
   }
 
   public updateCourse(
-    id: string,
-    title: string,
-    creationDate: Date,
-    duration: number,
+    id: number,
+    name: string,
+    date: string,
+    length: number,
     description: string,
-    topR: boolean
+    topR: boolean,
+    authors: Author[]
   ): void {
     const index: number = this.courses.findIndex(course => course.id === id);
-    this.courses[index] = new Course(id, title, creationDate, duration, description, topR);
+    this.courses[index] = new Course(id, name, date, length, description, topR, authors);
   }
 
-  public removeCourse(id: string): void {
+  public removeCourse(id: number): void {
     const index: number = this.courses.findIndex(course => course.id === id);
     if (index !== -1) {
       this.courses.splice(index, 1);
