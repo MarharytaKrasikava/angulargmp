@@ -7,57 +7,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  public isLoggesIn: boolean = false;
-  // public userInfo: UserInfo;
+  public token: string;
+  public userInfo: UserInfo;
 
   constructor(private http: HttpClient) {
     this.checkIsLoggedIn();
   }
 
-  private checkIsLoggedIn(): void {
-    const token: string = localStorage.getItem('userData');
-    if (token) {
-      this.isLoggesIn = true;
-    }
+  public checkIsLoggedIn(): boolean {
+    return !!this.token;
   }
 
-  public logIn(): void {
-    /* this.http.post('http://localhost:3004/auth/login', {
-      login: 'myLogin',
-      password: 'myPassword' }).subscribe((data: { token: string }) => {
-        localStorage.setItem(
-          'authToken',
-          data.token,
-        );
-        this.isLoggesIn = true;
-      }); */
-      localStorage.setItem(
-        'userData',
-        JSON.stringify({
-          login: 'myLogin',
-          password: 'myPassword',
-          token: 'myToken',
-        })
-      );
-
-      this.isLoggesIn = true;
+  public logIn(): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>('http://localhost:3004/auth/login', {
+      login: 'flastname',
+      password: 'flastname' });
   }
 
   public logOut(): void {
-    if (localStorage.getItem('userData')) {
-      localStorage.removeItem('userData');
-    }
-
-    this.isLoggesIn = false;
+    this.token = undefined;
   }
 
-  public getUserInfo(): UserInfo {
-    /* const token: string = localStorage.getItem('authToken');
-    this.http.post('http://localhost:3004/auth/login', { token }).subscribe((data: UserInfo) => {
+  public getUserInfo(): void {
+    this.http.post('http://localhost:3004/auth/login', { token: this.token }).subscribe((data: UserInfo) => {
       this.userInfo = data;
       console.log(data);
-    }); */
-    const data: string = localStorage.getItem('userData');
-    return data && JSON.parse(data);
+    });
   }
 }

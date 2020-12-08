@@ -14,7 +14,7 @@ import { DialogComponent } from './dialog/dialog.component';
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit, OnChanges {
-  private loadAmount: number = 3;
+  // private loadAmount: number = 3;
 
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
@@ -28,7 +28,7 @@ export class CoursesComponent implements OnInit, OnChanges {
   ) {}
 
   private receiveCourses(): void {
-    this.coursesService.getCourses(0, this.loadAmount).subscribe((data: Course[]) => {
+    this.coursesService.getCourses(0, this.coursesService.loadAmount).subscribe((data: Course[]) => {
       if (data) {
         this.courses = data;
       }
@@ -41,11 +41,13 @@ export class CoursesComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(): void {
-    this.courses = this.filter.transform(this.courses, this.filterValue);
+    this.filter.transform(this.filterValue).subscribe((response: Course[]) => {
+      this.courses = response;
+    });
   }
 
   public loadCourses(): void {
-    this.loadAmount += 3;
+    this.coursesService.loadAmount += 3;
     this.receiveCourses();
   }
 
@@ -55,8 +57,10 @@ export class CoursesComponent implements OnInit, OnChanges {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.coursesService.removeCourse(id);
-      this.courses = this.orderBy.transform(this.coursesService.courses);
+      this.coursesService.removeCourse(id).subscribe();
+      this.coursesService.getCourses(0, this.coursesService.loadAmount).subscribe((response: Course[]) => {
+        this.courses = this.orderBy.transform(response);
+      });
     });
 
   }
