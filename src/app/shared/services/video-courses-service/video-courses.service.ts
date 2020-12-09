@@ -8,7 +8,7 @@ import { Course, Author } from 'src/app/shared/models';
 })
 export class VideoCoursesService {
   public courses: Course[];
-  public loadAmount: number;
+  public loadAmount: number = 3;
 
   constructor(private http: HttpClient) {}
 
@@ -37,15 +37,21 @@ export class VideoCoursesService {
     name: string,
     date: string,
     length: number,
-    description: string,
+    authors: Author,
     topR: boolean,
-    authors: Author[]
-  ): Course {
-    return new Course(id, name, date, length, description, topR, authors);
+  ): Observable<any> {
+    return this.http.post<any>(`http://localhost:3004/courses`, {
+      id,
+      name,
+      date,
+      length,
+      authors,
+      topR,
+    });
   }
 
-  public getCourse(id: number): Course {
-    return this.courses.find((course) => course.id === id);
+  public getCourse(id: number): Observable<Course> {
+    return this.http.get<Course>(`http://localhost:3004/courses/${id}`);
   }
 
   public updateCourse(
@@ -53,20 +59,17 @@ export class VideoCoursesService {
     name: string,
     date: string,
     length: number,
-    description: string,
+    authors: Author,
     topR: boolean,
-    authors: Author[]
-  ): void {
-    const index: number = this.courses.findIndex((course) => course.id === id);
-    this.courses[index] = new Course(
+  ): Observable<any> {
+    return this.http.patch<any>(`http://localhost:3004/courses/${id}`, {
       id,
       name,
       date,
       length,
-      description,
+      authors,
       topR,
-      authors
-    );
+    });
   }
 
   public removeCourse(id: number): Observable<any> {

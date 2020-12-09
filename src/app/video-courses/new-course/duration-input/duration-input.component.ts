@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-duration-input',
@@ -6,6 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./duration-input.component.css']
 })
 export class DurationInputComponent {
+  @Output() newDurationValueSet: EventEmitter<number> = new EventEmitter<number>();
   @Input() public duration: number;
+
+  public setDuration(): void {
+    this.newDurationValueSet.emit(this.duration);
+  }
 
 }

@@ -15,7 +15,7 @@ export class LoginPageComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   public authenticate(): void {
-    this.authService.logIn().subscribe((data: { token: string }) => {
+    this.authService.logIn(this.loginValue, this.passwordValue).subscribe((data: { token: string }) => {
       this.authService.token = data.token;
       if (data.token) {
         this.router.navigate(['/courses']);
