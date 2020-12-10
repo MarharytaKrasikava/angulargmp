@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "video-course-app:build"
+            "browserTarget": "video-course-app:build",
+            "aot": true
           },
           "configurations": {
             "production": {
