@@ -7,15 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  public token: string;
-  public userInfo: UserInfo;
-
   constructor(private http: HttpClient) {
     this.checkIsLoggedIn();
   }
 
   public checkIsLoggedIn(): boolean {
-    return !!this.token;
+    return !!localStorage.getItem('authToken');
   }
 
   public logIn(login: string, password: string): Observable<{ token: string }> {
@@ -29,12 +26,14 @@ export class AuthService {
   }
 
   public logOut(): void {
-    this.token = undefined;
+    if (localStorage.getItem('authToken')) {
+      localStorage.removeItem('authToken');
+    }
   }
 
   public getUserInfo(): Observable<UserInfo> {
     return this.http.post<UserInfo>('http://localhost:3004/auth/userinfo', {
-      token: this.token,
+      token: localStorage.getItem('authToken'),
     });
   }
 }
