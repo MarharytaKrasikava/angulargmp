@@ -13,6 +13,6 @@ export class AppComponent {
   constructor(private authService: AuthService) { }
 
   public ngOnInit(): void {
-    this.isAuthenticated = this.authService.isLoggesIn;
+    this.isAuthenticated = this.authService.checkIsLoggedIn();
   }
 }

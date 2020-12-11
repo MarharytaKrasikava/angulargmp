@@ -16,7 +16,7 @@ export class LoginPageComponent {
 
   public authenticate(): void {
     this.authService.logIn();
-    if (this.authService.isLoggesIn) {
+    if (this.authService.checkIsLoggedIn()) {
       this.router.navigate(['/courses']);
     }
   }

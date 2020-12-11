@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   public ngOnInit(): void {
-    this.isAuthenticated = this.authService.isLoggesIn;
+    this.isAuthenticated = this.authService.checkIsLoggedIn();
   }
 
   public logOut(): void {
