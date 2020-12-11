@@ -19,7 +19,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (request.url !== 'http://localhost:3004/auth/login') {
       const tockenedRequest: HttpRequest<any> = request.clone({
-        headers: request.headers.append('Authorization', this.authService.token),
+        headers: request.headers.append('Authorization', localStorage.getItem('authToken')),
       });
       return next.handle(tockenedRequest);
     }

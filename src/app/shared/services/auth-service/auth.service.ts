@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-    this.checkIsLoggedIn();
-  }
+  constructor(private http: HttpClient) { }
 
   public checkIsLoggedIn(): boolean {
     return !!localStorage.getItem('authToken');
