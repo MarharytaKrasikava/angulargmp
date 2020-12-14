@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './authors-input.component.html',
   styleUrls: ['./authors-input.component.css']
 })
-export class AuthorsInputComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AuthorsInputComponent {}

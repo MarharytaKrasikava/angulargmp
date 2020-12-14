@@ -8,11 +8,4 @@ import { AuthService } from './shared/services/auth-service/auth.service';
 })
 export class AppComponent {
   public title: string = 'video-course-app';
-  public isAuthenticated: boolean = false;
-
-  constructor(private authService: AuthService) { }
-
-  public ngOnInit(): void {
-    this.isAuthenticated = this.authService.checkIsLoggedIn();
-  }
 }

@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 })
 export class CourseComponent implements OnInit, OnChanges {
   @Output()
-  public courseDeleted: EventEmitter<string> = new EventEmitter<string>();
+  public courseDeleted: EventEmitter<string> = new EventEmitter();
   @Input() public course: Course;
   @Input() public creationDate: Date;
 

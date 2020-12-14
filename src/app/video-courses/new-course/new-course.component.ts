@@ -10,16 +10,12 @@ import { VideoCoursesService } from 'src/app/shared/services/video-courses-servi
 })
 export class NewCourseComponent implements OnInit {
   public course: Course;
-  public showBreadCrumbs: boolean = false;
 
   constructor(private route: ActivatedRoute, private courseService: VideoCoursesService, private router: Router) {}
 
   public ngOnInit(): void {
     const id: string = this.route.snapshot.params.id;
     this.course = this.courseService.getCourse(id);
-    if (this.course) {
-      this.showBreadCrumbs = true;
-    }
   }
 
   public onCancel(): void {
