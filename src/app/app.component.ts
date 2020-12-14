@@ -7,12 +7,5 @@ import { AuthService } from './shared/services/auth-service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public name: string = 'video-course-app';
-  public isAuthenticated: boolean = false;
-
-  constructor(private authService: AuthService) { }
-
-  public ngOnInit(): void {
-    this.isAuthenticated = this.authService.checkIsLoggedIn();
-  }
+  public title: string = 'video-course-app';
 }

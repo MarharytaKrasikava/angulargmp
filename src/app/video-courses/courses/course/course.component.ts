@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 })
 export class CourseComponent{
   @Output()
-  public courseDeleted: EventEmitter<number> = new EventEmitter<number>();
+  public courseDeleted: EventEmitter<number> = new EventEmitter();
   @Input() public course: Course;
   @Input() public date: Date;
 

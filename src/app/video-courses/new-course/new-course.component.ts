@@ -10,7 +10,6 @@ import { VideoCoursesService } from 'src/app/shared/services/video-courses-servi
 })
 export class NewCourseComponent implements OnInit {
   public course: Course;
-  public showBreadCrumbs: boolean = false;
   public titleValue: string;
   public descriptionValue: string;
   private dateValue: Date;
@@ -27,9 +26,6 @@ export class NewCourseComponent implements OnInit {
     if (!id) return;
     this.courseService.getCourse(id).subscribe((course) => {
       this.course = course;
-      if (this.course) {
-        this.showBreadCrumbs = true;
-      }
     });
   }
 
