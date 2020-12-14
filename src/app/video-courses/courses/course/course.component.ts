@@ -15,6 +15,7 @@ import {
   faStar,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -24,7 +25,7 @@ import {
 })
 export class CourseComponent implements OnInit, OnChanges {
   @Output()
-  public courseDeleted: EventEmitter<string> = new EventEmitter<string>();
+  public courseDeleted: EventEmitter<string> = new EventEmitter();
   @Input() public course: Course;
   @Input() public creationDate: Date;
 

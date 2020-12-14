@@ -5,17 +5,9 @@ import { UserInfo } from '../../models/userInfo.model';
   providedIn: 'root'
 })
 export class AuthService {
-  public isLoggesIn: boolean = false;
 
-  constructor() {
-    this.checkIsLoggedIn();
-  }
-
-  private checkIsLoggedIn(): void {
-    const token: string = localStorage.getItem('userData');
-    if (token) {
-      this.isLoggesIn = true;
-    }
+  public checkIsLoggedIn(): boolean {
+    return !!localStorage.getItem('userData');
   }
 
   public logIn(): void {
@@ -28,8 +20,6 @@ export class AuthService {
       })
     );
 
-    this.isLoggesIn = true;
-
     console.log('Logged in successfully');
   }
 
@@ -37,8 +27,6 @@ export class AuthService {
     if (localStorage.getItem('userData')) {
       localStorage.removeItem('userData');
     }
-
-    console.log('Logged out');
   }
 
   public getUserInfo(): UserInfo {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/components/auth-service/auth.service';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,10 +12,13 @@ export class LoginPageComponent {
   public loginValue: string;
   public passwordValue: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   public authenticate(): void {
     this.authService.logIn();
+    if (this.authService.checkIsLoggedIn()) {
+      this.router.navigate(['/courses']);
+    }
   }
 
 }

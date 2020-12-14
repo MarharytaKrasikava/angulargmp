@@ -1,4 +1,4 @@
-import { Course } from '../../shared/models';
+import { Course } from '../../../shared/models';
 
 export const mockedCourses: Course[] = [
   new Course(
