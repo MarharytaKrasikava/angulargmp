@@ -24,6 +24,12 @@ app-header {
   font-size: 16px;
 }
 
+app-new-course {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 button {
   border: none;
   cursor: pointer;
@@ -49,4 +55,30 @@ fa-icon {
   margin-right: 10px;
   width: 300px;
   padding: 10px 10px 10px 30px;
+  box-sizing: border-box;
+}
+
+.input-label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.input-page__main-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+}
+
+.input-page__main-section__form {
+  height: max-content;
+  justify-content: space-around;
+  padding: 20px;
+  box-shadow: 1px 1px 5px 2px #b9b5b5;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }

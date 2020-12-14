@@ -23,6 +23,10 @@ import { DateHighlightDirective } from './shared/directives/date-highlight/date-
 import { DurationFormattingPipe } from './shared/pipes/duration-formatting/duration-formatting.pipe';
 import { OrderByPipe } from './shared/pipes/order-by/order-by.pipe';
 import { FilterPipe } from './shared/pipes/filter-pipe/filter.pipe';
+import { NewCourseComponent } from './video-courses/new-course/new-course.component';
+import { DateInputComponent } from './video-courses/new-course/date-input/date-input.component';
+import { DurationInputComponent } from './video-courses/new-course/duration-input/duration-input.component';
+import { AuthorsInputComponent } from './video-courses/new-course/authors-input/authors-input.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { FilterPipe } from './shared/pipes/filter-pipe/filter.pipe';
     DateHighlightDirective,
     DurationFormattingPipe,
     DialogComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    NewCourseComponent,
+    DateInputComponent,
+    DurationInputComponent,
+    AuthorsInputComponent
   ],
   imports: [
     BrowserModule,
