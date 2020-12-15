@@ -1,17 +1,22 @@
 import {
   HttpEvent,
+  HttpEventType,
   HttpHandler,
-  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { AuthService } from './auth-service/auth.service';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private spinnerService: SpinnerService
+  ) {}
 
   public intercept(
     request: HttpRequest<any>,
@@ -19,9 +24,19 @@ export class AuthInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (request.url !== 'http://localhost:3004/auth/login') {
       const tockenedRequest: HttpRequest<any> = request.clone({
-        headers: request.headers.append('Authorization', localStorage.getItem('authToken')),
+        headers: request.headers.append(
+          'Authorization',
+          localStorage.getItem('authToken')
+        ),
       });
-      return next.handle(tockenedRequest);
+      this.spinnerService.show.next(true);
+      return next.handle(tockenedRequest).pipe(
+        tap((event) => {
+          if (event.type === HttpEventType.Response) {
+            this.spinnerService.show.next(false);
+          }
+        })
+      );
     }
     return next.handle(request);
   }

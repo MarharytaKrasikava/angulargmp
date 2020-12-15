@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { PageNotFoundComponent } from './video-courses/page-not-found/page-not-f
 import { VideoCoursesService } from './shared/services/video-courses-service/video-courses.service';
 import { AuthService } from './shared/services/auth-service/auth.service';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     DurationInputComponent,
     AuthorsInputComponent,
     PageNotFoundComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     FontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
   ],
   providers: [
@@ -65,7 +69,11 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     FilterPipe,
     VideoCoursesService,
     AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

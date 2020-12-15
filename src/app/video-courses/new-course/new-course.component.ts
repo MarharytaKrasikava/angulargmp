@@ -34,12 +34,6 @@ export class NewCourseComponent implements OnInit {
   }
 
   public onSave(): void {
-    console.log({
-      title: this.titleValue,
-      description: this.descriptionValue,
-      date: this.dateValue,
-      duration: this.durationValue,
-    });
     this.courseService
       .createCourse(
         new Date().getTime(),

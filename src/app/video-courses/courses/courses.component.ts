@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../../shared/models';
@@ -8,13 +8,16 @@ import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
 import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
 import { DialogComponent } from './dialog/dialog.component';
 import { Router } from '@angular/router';
+import { Subscription, interval } from 'rxjs';
+import { debounce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
 })
-export class CoursesComponent implements OnInit, OnChanges {
+export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
+  private searchSubscription: Subscription;
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
   @Input() public filterValue: string = '';
@@ -27,9 +30,9 @@ export class CoursesComponent implements OnInit, OnChanges {
     public dialog: MatDialog
   ) {}
 
-  private receiveCourses(): void {
+  private receiveCourses(filterVal: string = ''): void {
     this.coursesService
-      .getCourses(0, this.coursesService.loadAmount)
+      .getCourses(0, this.coursesService.loadAmount, filterVal)
       .subscribe((data: Course[]) => {
         if (data) {
           this.courses = data;
@@ -40,6 +43,12 @@ export class CoursesComponent implements OnInit, OnChanges {
   public ngOnInit(): void {
     this.receiveCourses();
     this.courses = this.orderBy.transform(this.courses);
+    this.searchSubscription = this.coursesService.searchValue
+      .pipe(debounce(() => interval(500)))
+      .subscribe((value) => {
+        console.log(value);
+        this.receiveCourses(value);
+      });
   }
 
   public ngOnChanges(): void {
@@ -73,5 +82,9 @@ export class CoursesComponent implements OnInit, OnChanges {
 
   public addCourse() {
     this.router.navigate(['/new-course']);
+  }
+
+  public ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 }
