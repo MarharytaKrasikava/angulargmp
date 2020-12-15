@@ -39,8 +39,8 @@ describe('CourseComponent', () => {
   });
 
   it('should render course header correctly', () => {
-    expect(courseHtml.querySelector('.course__header__title').textContent).toBe(
-      `Video Course ${component.course.id}: ${component.course.title}`
+    expect(courseHtml.querySelector('.course__header__name').textContent).toBe(
+      `Video Course ${component.course.id}: ${component.course.name}`
     );
   });
 
@@ -48,7 +48,7 @@ describe('CourseComponent', () => {
     expect(
       courseHtml.querySelector('.course__header__detail').firstChild
         .textContent
-    ).toBe(`${component.course.duration}min`);
+    ).toBe(`${component.course.length}min`);
   });
 
   it('should render course date correctly', () => {
@@ -64,8 +64,8 @@ describe('CourseComponent', () => {
   });
 
   it('should emit correct id', () => {
-    let selectedId: string;
-    component.courseDeleted.subscribe((id: string) => {
+    let selectedid: number;
+    component.courseDeleted.subscribe((id: number) => {
       selectedId = id;
     });
     const deleteButton: HTMLButtonElement = courseHtml.querySelector(

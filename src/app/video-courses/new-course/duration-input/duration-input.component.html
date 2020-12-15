@@ -1,5 +1,5 @@
 <label for="duration" class="input-label">Duration</label>
 <div class="duration-input-wrapper">
-  <input class="wide-input" type="number" placeholder="Duration in min" id="duration" [(ngModel)]="duration"/>
+  <input class="wide-input" type="number" placeholder="Duration in min" id="duration" [(ngModel)]="duration" (blur)="setDuration()"/>
   <aside>{{ duration || 0 | durationPipe}}</aside>
 </div>

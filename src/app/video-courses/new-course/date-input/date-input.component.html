@@ -1,3 +1,3 @@
 <label for="date" class="input-label">Date</label>
-<input class="wide-input" type="date" placeholder="Creation Date" id="date"
-  [value]="'' + dateValue.getFullYear() + '-' + (dateValue.getMonth() + 1) + '-' + (dateValue.getDate() > 10 ? '' : 0) + dateValue.getDate()" />
+<input class="wide-input" type="date" placeholder="Creation Date" id="date" [(ngModel)]="newDateValue" (blur)="changeValue()"
+  [value]="dateValue && formatDate(dateValue)" />

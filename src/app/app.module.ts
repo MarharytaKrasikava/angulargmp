@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components';
@@ -28,6 +29,7 @@ import { AuthorsInputComponent } from './video-courses/new-course/authors-input/
 import { PageNotFoundComponent } from './video-courses/page-not-found/page-not-found.component';
 import { VideoCoursesService } from './shared/services/video-courses-service/video-courses.service';
 import { AuthService } from './shared/services/auth-service/auth.service';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,7 @@ import { AuthService } from './shared/services/auth-service/auth.service';
     DateInputComponent,
     DurationInputComponent,
     AuthorsInputComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +58,15 @@ import { AuthService } from './shared/services/auth-service/auth.service';
     FontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [OrderByPipe, FilterPipe, VideoCoursesService, AuthService],
+  providers: [
+    OrderByPipe,
+    FilterPipe,
+    VideoCoursesService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

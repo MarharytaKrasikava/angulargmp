@@ -23,29 +23,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./course.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseComponent implements OnInit, OnChanges {
+export class CourseComponent{
   @Output()
-  public courseDeleted: EventEmitter<string> = new EventEmitter();
+  public courseDeleted: EventEmitter<number> = new EventEmitter();
   @Input() public course: Course;
-  @Input() public creationDate: Date;
+  @Input() public date: Date;
 
   public durationIcon: IconDefinition = faClock;
   public dateIcon: IconDefinition = faCalendarAlt;
   public editIcon: IconDefinition = faPencilAlt;
   public deleteIcon: IconDefinition = faTrash;
   public starIcon: IconDefinition = faStar;
-
-  constructor() {
-    console.log('constructor called');
-  }
-
-  public ngOnInit(): void {
-    console.log('initiolized');
-  }
-
-  public ngOnChanges(): void {
-    console.log('changed');
-  }
 
   public onDelete(): void {
     this.courseDeleted.emit(this.course.id);

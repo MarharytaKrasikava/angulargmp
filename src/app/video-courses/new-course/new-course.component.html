@@ -1,20 +1,20 @@
 <app-header></app-header>
-<app-breadcrumbs [courseTitle]="course.title" *ngIf="course"></app-breadcrumbs>
+<app-breadcrumbs [courseTitle]="course.name" *ngIf="course"></app-breadcrumbs>
 <section class="input-page__main-section">
   <div class="input-page__main-section__form new-course">
     <h1>New course</h1>
     <div class="new-course__form-input">
-      <label for="title" class="input-label"></label>
-      <input class="wide-input long-input" type="text" placeholder="Video Course Title" id="title"
-        [value]="course?.title || ''" />
+      <label for="name" class="input-label"></label>
+      <input class="wide-input long-input" type="text" placeholder="Video Course Title" id="name"
+        [value]="course?.name || ''" [(ngModel)]="titleValue"/>
     </div>
     <div class="new-course__form-input">
       <label for="description" class="input-label">Description</label>
       <textarea class="wide-input long-input" placeholder="Video Course Description" id="description"
-        [value]="course?.description || ''"></textarea>
+        [value]="course?.description || ''" [(ngModel)]="descriptionValue"></textarea>
     </div>
-    <app-date-input [dateValue]="course?.creationDate || ''"></app-date-input>
-    <app-duration-input [duration]="course?.duration || ''"></app-duration-input>
+    <app-date-input [dateValue]="course?.date || ''" (newDateValueSet)="dateValueChanged($event)"></app-date-input>
+    <app-duration-input [duration]="course?.length || ''" (newDurationValueSet)="durationValueChanged($event)"></app-duration-input>
     <app-authors-input></app-authors-input>
     <div class="new-course__buttons">
       <button class="wide-button" (click)="onCancel()">Cancel</button>

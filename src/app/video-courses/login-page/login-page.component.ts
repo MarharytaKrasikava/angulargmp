@@ -15,10 +15,12 @@ export class LoginPageComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   public authenticate(): void {
-    this.authService.logIn();
-    if (this.authService.checkIsLoggedIn()) {
-      this.router.navigate(['/courses']);
-    }
+    this.authService.logIn(this.loginValue, this.passwordValue).subscribe((data: { token: string }) => {
+      if (data.token) {
+        this.router.navigate(['/courses']);
+      }
+      localStorage.setItem('authToken', data.token);
+    });
   }
 
 }

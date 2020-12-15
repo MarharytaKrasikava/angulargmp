@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 import { faSignOutAlt, faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../shared/services/auth-service/auth.service';
+import { UserInfo } from '../../models/userInfo.model';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,18 @@ export class HeaderComponent implements OnInit {
   public logOffIcon: IconDefinition = faSignOutAlt;
 
   public isAuthenticated: boolean = false;
+  public userName: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   public ngOnInit(): void {
     this.isAuthenticated = this.authService.checkIsLoggedIn();
+    if (this.isAuthenticated) {
+      this.authService.getUserInfo().subscribe((data: UserInfo) => {
+        this.userName = data.login;
+        console.log(data);
+      });
+    }
   }
 
   public logOut(): void {

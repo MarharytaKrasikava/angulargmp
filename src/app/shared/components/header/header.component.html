@@ -1,5 +1,5 @@
 <div class="header__logo"><fa-icon [icon]="logoIcon"></fa-icon>Video Course</div>
 <div class="header__auth" *ngIf="isAuthenticated">
-  <div class="header__auth__user"><fa-icon [icon]="userIcon"></fa-icon>User login</div>
+  <div class="header__auth__user"><fa-icon [icon]="userIcon"></fa-icon>{{ userName }}</div>
   <button type="button" (click)="logOut()"><fa-icon [icon]="logOffIcon"></fa-icon>Log off</button>
 </div>
