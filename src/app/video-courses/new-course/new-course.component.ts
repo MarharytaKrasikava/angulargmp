@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Course } from 'src/app/shared/models';
 import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';
+import * as CoursesActions from '../courses/store/courses.actions';
 
 @Component({
   selector: 'app-new-course',
@@ -18,7 +20,8 @@ export class NewCourseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private courseService: VideoCoursesService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   public ngOnInit(): void {
@@ -34,18 +37,21 @@ export class NewCourseComponent implements OnInit {
   }
 
   public onSave(): void {
-    this.courseService
-      .createCourse(
-        new Date().getTime(),
-        this.titleValue,
-        new Date(this.dateValue).toDateString(),
-        this.durationValue,
-        { id: 123, name: 'Marho' },
-        false
-      )
-      .subscribe(() => {
-        this.router.navigate(['/courses']);
-      });
+    const newCourse = new Course(
+      this.course?.id || new Date().getTime(),
+      this.titleValue,
+      this.dateValue ? new Date(this.dateValue).toDateString() : this.course.date,
+      this.durationValue || this.course.length,
+      this.descriptionValue,
+      false,
+      { id: 123, name: 'Marho' }
+    );
+    if (this.course) {
+      this.store.dispatch(new CoursesActions.EditCourse(newCourse));
+    } else {
+      this.store.dispatch(new CoursesActions.AddCourse(newCourse));
+    }
+    this.router.navigate(['/courses']);
   }
 
   public dateValueChanged(value): void {

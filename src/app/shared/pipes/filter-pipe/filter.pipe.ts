@@ -9,8 +9,8 @@ import { VideoCoursesService } from '../../services/video-courses-service/video-
 export class FilterPipe implements PipeTransform {
   constructor(private cousesService: VideoCoursesService) {}
 
-  public transform(filterVal: string): Observable<Course[]> {
-    return this.cousesService.getCourses(0, undefined, filterVal);
+  public transform(courses: Course[], filterVal: string): Course[] {
+    return courses.filter(course => course.name.includes(filterVal) || course.description.includes(filterVal));
   }
 
 }

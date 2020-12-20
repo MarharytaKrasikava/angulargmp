@@ -9,10 +9,13 @@ import { throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { AuthService } from './auth-service/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import * as AuthActions from '../../video-courses/login-page/store/auth.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,6 +23,7 @@ export class AuthGuard implements CanActivate {
   ) {
     return this.authService.getUserInfo().pipe(
       map((user) => {
+        this.store.dispatch(new AuthActions.Login(user));
         return !!user;
       }), catchError(() => {
         this.router.navigate(['/login']);

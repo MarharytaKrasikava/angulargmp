@@ -7,6 +7,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components';
@@ -32,7 +34,8 @@ import { VideoCoursesService } from './shared/services/video-courses-service/vid
 import { AuthService } from './shared/services/auth-service/auth.service';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
-
+import { appReducer } from './store/app.reducer';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +66,8 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production })
   ],
   providers: [
     OrderByPipe,
