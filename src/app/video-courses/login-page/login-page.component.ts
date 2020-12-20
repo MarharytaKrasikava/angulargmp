@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnDestroy {
     this.router.navigate(['/courses']);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.storeSubscription.unsubscribe();
   }
 

@@ -27,7 +27,7 @@ export class AuthService {
       if (data.token) {
         this.getUserInfo().subscribe(userInfo => {
           this.store.dispatch(new AuthActions.Login(userInfo));
-        })
+        });
         localStorage.setItem('authToken', data.token);
       }
     });

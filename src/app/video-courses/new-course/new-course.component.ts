@@ -11,11 +11,11 @@ import * as CoursesActions from '../courses/store/courses.actions';
   styleUrls: ['./new-course.component.css'],
 })
 export class NewCourseComponent implements OnInit {
+  private dateValue: Date;
+  private durationValue: number;
   public course: Course;
   public titleValue: string;
   public descriptionValue: string;
-  private dateValue: Date;
-  private durationValue: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class NewCourseComponent implements OnInit {
 
   public ngOnInit(): void {
     const id: number = this.route.snapshot.params.id;
-    if (!id) return;
+    if (!id) { return; }
     this.courseService.getCourse(id).subscribe((course) => {
       this.course = course;
     });

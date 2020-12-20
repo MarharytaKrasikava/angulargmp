@@ -10,4 +10,4 @@ export interface AppState {
 export const appReducer: ActionReducerMap<AppState> = {
   courses: CoursesReducer.coursesReducer,
   auth: AuthReducer.authReducer,
-}
+};

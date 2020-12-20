@@ -19,7 +19,7 @@ export class SearchComponent {
     this.filterValueSet.emit(this.inputValue);
   }
 
-  public searchCourses() {
+  public searchCourses(): void {
     this.coursesService.searchValue.next(this.inputValue);
   }
 }
