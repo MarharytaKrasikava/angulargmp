@@ -21,9 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit() {}
-
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.showSpinnerSubscription.unsubscribe();
   }
 }

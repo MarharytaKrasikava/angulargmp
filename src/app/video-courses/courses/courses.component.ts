@@ -1,15 +1,24 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../../shared/models';
+import { Router } from '@angular/router';
+import { Subscription, interval } from 'rxjs';
+import { debounce, map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import { VideoCoursesService } from '../../shared/services/video-courses-service/video-courses.service';
 import { OrderByPipe } from 'src/app/shared/pipes/order-by/order-by.pipe';
 import { FilterPipe } from 'src/app/shared/pipes/filter-pipe/filter.pipe';
 import { DialogComponent } from './dialog/dialog.component';
-import { Router } from '@angular/router';
-import { Subscription, interval } from 'rxjs';
-import { debounce } from 'rxjs/operators';
+import { AppState } from 'src/app/store/app.reducer';
 
 @Component({
   selector: 'app-courses',
@@ -18,6 +27,7 @@ import { debounce } from 'rxjs/operators';
 })
 export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
   private searchSubscription: Subscription;
+  private storeSubscription: Subscription;
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
   @Input() public filterValue: string = '';
@@ -27,39 +37,40 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
     private filter: FilterPipe,
     private coursesService: VideoCoursesService,
     private router: Router,
+    private store: Store<AppState>,
     public dialog: MatDialog
   ) {}
 
-  private receiveCourses(filterVal: string = ''): void {
-    this.coursesService
-      .getCourses(0, this.coursesService.loadAmount, filterVal)
-      .subscribe((data: Course[]) => {
-        if (data) {
-          this.courses = data;
-        }
-      });
-  }
-
   public ngOnInit(): void {
-    this.receiveCourses();
-    this.courses = this.orderBy.transform(this.courses);
+    this.coursesService.getCourses();
+    this.storeSubscription = this.store
+      .select('courses')
+      .pipe(map((cousesState) => cousesState.courses))
+      .subscribe((courses: Course[]) => {
+        this.courses = this.orderBy.transform(courses);
+      });
     this.searchSubscription = this.coursesService.searchValue
       .pipe(debounce(() => interval(500)))
       .subscribe((value) => {
-        console.log(value);
-        this.receiveCourses(value);
+        this.coursesService.getCourses(
+          0,
+          this.coursesService.loadAmount,
+          value
+        );
       });
   }
 
-  public ngOnChanges(): void {
-    this.filter.transform(this.filterValue).subscribe((response: Course[]) => {
-      this.courses = response;
-    });
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (
+      changes.filterValue.currentValue !== changes.filterValue.previousValue
+    ) {
+      this.courses = this.filter.transform(this.courses, this.filterValue);
+    }
   }
 
   public loadCourses(): void {
     this.coursesService.loadAmount += 3;
-    this.receiveCourses();
+    this.coursesService.getCourses(0, this.coursesService.loadAmount);
   }
 
   public onCourseDeleted(id: number): void {
@@ -72,11 +83,7 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
 
     dialogRef.afterClosed().subscribe(() => {
       this.coursesService.removeCourse(id).subscribe();
-      this.coursesService
-        .getCourses(0, this.coursesService.loadAmount)
-        .subscribe((response: Course[]) => {
-          this.courses = this.orderBy.transform(response);
-        });
+      this.coursesService.getCourses(0, this.coursesService.loadAmount);
     });
   }
 
@@ -86,5 +93,6 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
 
   public ngOnDestroy() {
     this.searchSubscription.unsubscribe();
+    this.storeSubscription.unsubscribe();
   }
 }

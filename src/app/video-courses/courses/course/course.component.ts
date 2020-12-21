@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./course.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseComponent{
+export class CourseComponent {
   @Output()
   public courseDeleted: EventEmitter<number> = new EventEmitter();
   @Input() public course: Course;
