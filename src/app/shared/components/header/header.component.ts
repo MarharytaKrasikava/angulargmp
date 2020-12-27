@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         .select('auth')
         .pipe(map((authState) => authState.userInfo))
         .subscribe((userInfo: UserInfo) => {
-          this.userName = userInfo.login;
+          this.userName = userInfo?.login;
         });
     }
   }
@@ -51,6 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.storeSubscription.unsubscribe();
+    this.storeSubscription?.unsubscribe();
   }
 }

@@ -6,8 +6,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { AuthService } from './auth-service/auth.service';
 import { SpinnerService } from './spinner.service';
 
@@ -35,6 +35,9 @@ export class AuthInterceptorService implements HttpInterceptor {
           if (event.type === HttpEventType.Response) {
             this.spinnerService.show.next(false);
           }
+        }), catchError(() => {
+          this.spinnerService.show.next(false);
+          return throwError('You are not authorized!');
         })
       );
     }

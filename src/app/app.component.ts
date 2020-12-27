@@ -13,12 +13,14 @@ export class AppComponent implements OnInit, OnDestroy {
   public showSpinnerSubscription: Subscription;
   public title: string = 'video-course-app';
 
-  constructor(private spinnerService: SpinnerService) {
-    this.showSpinnerSubscription = this.spinnerService.show.pipe(debounce(() => interval(100))).subscribe(
-      show => {
+  constructor(private spinnerService: SpinnerService) {}
+
+  ngOnInit() {
+    this.showSpinnerSubscription = this.spinnerService.show
+      .pipe(debounce(() => interval(100)))
+      .subscribe((show) => {
         this.showSpinner = show;
-      }
-    );
+      });
   }
 
   public ngOnDestroy() {

@@ -25,10 +25,10 @@ export class AuthService {
       }
     ).subscribe((data: { token: string }) => {
       if (data.token) {
+        localStorage.setItem('authToken', data.token);
         this.getUserInfo().subscribe(userInfo => {
           this.store.dispatch(new AuthActions.Login(userInfo));
         });
-        localStorage.setItem('authToken', data.token);
       }
     });
   }

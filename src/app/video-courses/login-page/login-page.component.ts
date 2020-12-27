@@ -11,29 +11,35 @@ import { AppState } from 'src/app/store/app.reducer';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnDestroy {
   private storeSubscription: Subscription;
   public loginValue: string;
   public passwordValue: string;
 
-  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private store: Store<AppState>
+  ) {}
 
   public authenticate(): void {
-    this.storeSubscription =  this.store.select('auth').pipe(map((authState) => authState.userInfo))
-    .subscribe((userInfo: UserInfo) => {
-      if (userInfo.token) {
-        this.router.navigate(['/courses']);
-      }
-      localStorage.setItem('authToken', userInfo.token);
-    });
+    this.authService.logIn(this.loginValue, this.passwordValue);
+    this.storeSubscription = this.store
+      .select('auth')
+      .pipe(map((authState) => authState.userInfo))
+      .subscribe((userInfo: UserInfo) => {
+        if (userInfo?.fakeToken) {
+          localStorage.setItem('authToken', userInfo.fakeToken);
+          this.router.navigate(['/courses']);
+        }
+      });
 
     this.router.navigate(['/courses']);
   }
 
   public ngOnDestroy() {
-    this.storeSubscription.unsubscribe();
+    this.storeSubscription?.unsubscribe();
   }
-
 }
