@@ -39,10 +39,10 @@ export class NewCourseComponent implements OnInit {
   public onSave(): void {
     const newCourse = new Course(
       this.course?.id || new Date().getTime(),
-      this.titleValue,
+      this.titleValue || this.course.name,
       this.dateValue ? new Date(this.dateValue).toDateString() : this.course.date,
       this.durationValue || this.course.length,
-      this.descriptionValue,
+      this.descriptionValue || this.course.description,
       false,
       { id: 123, name: 'Marho' }
     );
