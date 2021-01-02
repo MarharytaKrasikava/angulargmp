@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, OnChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,28 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true,
   }]
 })
-export class DateInputComponent implements ControlValueAccessor {
+export class DateInputComponent implements ControlValueAccessor, OnChanges {
   @Input() public dateValue: string;
+
+  public ngOnChanges() {
+    this.onChange(this.formatDate(this.dateValue) || '');
+  }
+
+  public changeValue(newDateValue: string): void {
+    this.onChange(newDateValue);
+    this.onTouched();
+  }
+
+  public formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const completeDate = (date) => date > 10 ? date : `${0}${date}`;
+    return `${completeDate(date.getDate())}/${completeDate(date.getMonth() + 1)}/${date.getFullYear()}`;
+  }
+
   public onChange = (value: any) => {};
   public onTouched = () => {};
 
-  public registerOnChange(fn: any) {
+  public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
@@ -24,19 +40,8 @@ export class DateInputComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  public writeValue(value: string) {
+  public writeValue(value: string): void {
     this.dateValue = value;
-  }
-
-  public changeValue(newDateValue: string) {
-    this.onChange(newDateValue);
-    this.onTouched();
-  }
-
-  public formatDate(dateString: string) {
-    const date = new Date(dateString);
-    const completeDate = (date) => date > 10 ? date : `${0}${date}`;
-    return `${completeDate(date.getDate())}/${completeDate(date.getMonth() + 1)}/${date.getFullYear()}`;
   }
 
 }

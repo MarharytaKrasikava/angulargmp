@@ -2,8 +2,9 @@ import {
   Component,
   Input,
   forwardRef,
+  OnChanges,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-duration-input',
@@ -17,8 +18,19 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class DurationInputComponent {
+export class DurationInputComponent implements ControlValueAccessor, OnChanges {
   @Input() public duration: number;
+
+  public ngOnChanges(): void {
+    this.onChange(this.duration || 0);
+  }
+
+  public setDuration(newValue: number): void {
+    this.duration = newValue;
+    this.onChange(newValue);
+    this.onTouched();
+  }
+
   public onChange = (value: any) => {};
   public onTouched = () => {};
 
@@ -30,13 +42,7 @@ export class DurationInputComponent {
     this.onTouched = fn;
   }
 
-  public writeValue(value: number) {
+  public writeValue(value: number): void {
     this.duration = value;
-  }
-
-  public setDuration(newValue: number): void {
-    this.duration = newValue;
-    this.onChange(newValue);
-    this.onTouched();
   }
 }

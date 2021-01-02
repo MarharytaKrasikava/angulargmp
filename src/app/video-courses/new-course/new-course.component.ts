@@ -38,12 +38,12 @@ export class NewCourseComponent implements OnInit {
   public onSave(form: NgForm): void {
     const newCourse = new Course(
       this.course?.id || new Date().getTime(),
-      form.value.title,
+      form.value.title || this.course.name,
       form.value.creationDate
-        ? new Date(this.extractDate(form.value.creationDate)).toDateString()
+        ? new Date(this.extractDate(form.value.creationDate)).toString()
         : this.course.date,
       form.value.duration || this.course.length,
-      form.value.description,
+      form.value.description || this.course.description,
       false,
       { id: 123, name: 'Marho' }
     );
