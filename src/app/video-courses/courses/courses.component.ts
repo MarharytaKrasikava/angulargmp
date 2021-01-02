@@ -42,7 +42,6 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.coursesService.getCourses();
     this.storeSubscription = this.store
       .select('courses')
       .pipe(map((cousesState) => cousesState.courses))

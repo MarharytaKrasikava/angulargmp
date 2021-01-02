@@ -36,6 +36,7 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { appReducer } from './store/app.reducer';
 import { environment } from 'src/environments/environment';
+import { DateValidatorDirective } from './shared/directives/date-validator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { environment } from 'src/environments/environment';
     AuthorsInputComponent,
     PageNotFoundComponent,
     SpinnerComponent,
+    DateValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ import { environment } from 'src/environments/environment';
     MatProgressSpinnerModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [
     OrderByPipe,

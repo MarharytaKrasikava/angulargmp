@@ -31,3 +31,20 @@ textarea.long-input {
   padding-left: 30px;
   padding-right: 30px;
 }
+
+.new-course__buttons__save[disabled] {
+  background-color: #bee491;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.label-wrapper {
+  display: flex;
+}
+
+.input-error {
+  color: red;
+  margin-left: 20px;
+}
