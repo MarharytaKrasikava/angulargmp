@@ -37,6 +37,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { appReducer } from './store/app.reducer';
 import { environment } from 'src/environments/environment';
 import { DateValidatorDirective } from './shared/directives/date-validator.directive';
+import { NumberValidatorDirective } from './shared/directives/number-validator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { DateValidatorDirective } from './shared/directives/date-validator.direc
     PageNotFoundComponent,
     SpinnerComponent,
     DateValidatorDirective,
+    NumberValidatorDirective,
   ],
   imports: [
     BrowserModule,

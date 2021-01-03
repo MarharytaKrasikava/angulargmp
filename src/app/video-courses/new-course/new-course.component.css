@@ -3,7 +3,10 @@
   width: 50%;
 }
 
-.new-course__form-input, app-date-input, app-duration-input, app-authors-input {
+.new-course__form-input,
+app-date-input,
+app-duration-input,
+app-authors-input {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -36,12 +39,8 @@ textarea.long-input {
   background-color: #bee491;
 }
 
-input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+.ng-dirty.ng-touched.ng-invalid:not(form) {
   border: 1px solid red;
-}
-
-.label-wrapper {
-  display: flex;
 }
 
 .input-error {

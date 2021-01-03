@@ -1,8 +1,11 @@
-<label for="duration" class="input-label">Duration</label>
+<div class="label-wrapper">
+  <label for="duration" class="input-label">Duration</label>
+  <ng-content></ng-content>
+</div>
 <div class="duration-input-wrapper">
   <input
     class="wide-input"
-    type="number"
+    type="text"
     placeholder="Duration in min"
     id="duration"
     [ngModel]="duration"

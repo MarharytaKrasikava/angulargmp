@@ -83,3 +83,7 @@ fa-icon {
   display: flex;
   flex-direction: column;
 }
+
+.label-wrapper {
+  display: flex;
+}
