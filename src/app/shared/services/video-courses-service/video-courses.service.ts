@@ -9,7 +9,7 @@ import { Course, Author } from 'src/app/shared/models';
 export class VideoCoursesService {
   public courses: Course[];
   public loadAmount: number = 3;
-  public searchValue = new Subject<string>();
+  public searchValue: Subject<string> = new Subject();
 
   constructor(private http: HttpClient) {}
 

@@ -5,23 +5,17 @@ import { VideoCoursesService } from 'src/app/shared/services/video-courses-servi
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  @Output() public filterValueSet: EventEmitter<string> = new EventEmitter<string>();
   public searchIcon: IconDefinition = faSearch;
   public inputValue: string = '';
 
   constructor(private coursesService: VideoCoursesService) {}
 
-  public onClick(): void {
-    this.filterValueSet.emit(this.inputValue);
-  }
-
-  public searchCourses() {
+  public searchCourses(): void {
     if (this.inputValue.length >= 3) {
       this.coursesService.searchValue.next(this.inputValue);
     }
   }
-
 }
