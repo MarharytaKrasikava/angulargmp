@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { UserInfo } from 'src/app/shared/models/userInfo.model';
 
 import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
+import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';
 import { AppState } from 'src/app/store/app.reducer';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginPageComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private coursesService: VideoCoursesService,
   ) {}
 
   public authenticate(): void {
@@ -33,13 +35,14 @@ export class LoginPageComponent implements OnDestroy {
         if (userInfo?.fakeToken) {
           localStorage.setItem('authToken', userInfo.fakeToken);
           this.router.navigate(['/courses']);
+          this.coursesService.getCourses();
         }
       });
 
     this.router.navigate(['/courses']);
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.storeSubscription?.unsubscribe();
   }
 }

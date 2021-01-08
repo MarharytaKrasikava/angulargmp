@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private spinnerService: SpinnerService, private coursesService: VideoCoursesService) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.coursesService.getCourses();
     this.showSpinnerSubscription = this.spinnerService.show
       .pipe(debounce(() => interval(100)))
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.showSpinnerSubscription.unsubscribe();
   }
 }
