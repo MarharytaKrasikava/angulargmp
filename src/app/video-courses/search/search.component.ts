@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';
 
@@ -8,18 +9,11 @@ import { VideoCoursesService } from 'src/app/shared/services/video-courses-servi
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  @Output()
-  public filterValueSet: EventEmitter<string> = new EventEmitter();
   public searchIcon: IconDefinition = faSearch;
-  public inputValue: string = '';
-
+  @ViewChild('form') public searchForm: NgForm;
   constructor(private coursesService: VideoCoursesService) {}
 
-  public onClick(): void {
-    this.filterValueSet.emit(this.inputValue);
-  }
-
   public searchCourses(): void {
-    this.coursesService.searchValue.next(this.inputValue);
+    this.coursesService.searchValue.next(this.searchForm.value.searchValue);
   }
 }

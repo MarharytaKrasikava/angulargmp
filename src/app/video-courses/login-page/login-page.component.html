@@ -34,6 +34,7 @@
         type="submit"
         class="wide-button login-page__main-section__form__login-button"
         routerLink="/login"
+        [disabled]="!form.valid"
       >Log In</button>
     </form>
   </section>
