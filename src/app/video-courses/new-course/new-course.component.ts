@@ -16,7 +16,7 @@ import * as CoursesActions from '../courses/store/courses.actions';
 })
 export class NewCourseComponent implements OnInit, OnDestroy {
   private storeSubscription: Subscription;
-  private authors: Author[];
+  public authors: Author[];
   public course: Course;
 
   constructor(

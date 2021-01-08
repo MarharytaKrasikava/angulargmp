@@ -16,7 +16,8 @@
           type="text"
           placeholder="Video Course Title"
           id="name"
-          [ngModel]="course?.name || ''" name="title"
+          [ngModel]="course?.name || ''"
+          name="title"
           required
           [maxlength]="50"
           #title="ngModel"
@@ -59,16 +60,18 @@
         [ngModel]="duration"
         validateNumber
       >
-        <p *ngIf="!duration.valid" class="input-error">The duration in invalid</p>
+        <p *ngIf="!duration.valid" class="input-error">The duration is invalid</p>
       </app-duration-input>
       <app-authors-input
         [selectedAuthors]="course?.authors || ''"
-      ></app-authors-input>
+      >
+      <p *ngIf="!authors.length" class="input-error">The autors field in empty</p>
+      </app-authors-input>
       <div class="new-course__buttons">
         <button class="wide-button" (click)="onCancel()">Cancel</button>
         <button
           class="new-course__buttons__save wide-button"
-          type="submit" [disabled]="!form.valid"
+          type="submit" [disabled]="!form.valid || !authors.length"
         >Save</button>
       </div>
     </form>
