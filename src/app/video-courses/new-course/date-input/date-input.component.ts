@@ -5,16 +5,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.css'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => DateInputComponent),
-    multi: true,
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true,
+    },
+  ],
 })
 export class DateInputComponent implements ControlValueAccessor, OnChanges {
   @Input() public dateValue: string;
 
-  public ngOnChanges() {
+  public ngOnChanges(): void {
     this.onChange(this.formatDate(this.dateValue) || '');
   }
 
@@ -24,9 +26,13 @@ export class DateInputComponent implements ControlValueAccessor, OnChanges {
   }
 
   public formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    const completeDate = (date) => date > 10 ? date : `${0}${date}`;
-    return `${completeDate(date.getDate())}/${completeDate(date.getMonth() + 1)}/${date.getFullYear()}`;
+    const date: Date = new Date(dateString);
+    const completeDate: (param: number) => number | string = (
+      param: number
+    ): number | string => (param > 10 ? param : `${0}${param}`);
+    return `${completeDate(date.getDate())}/${completeDate(
+      date.getMonth() + 1
+    )}/${date.getFullYear()}`;
   }
 
   public onChange = (value: any) => {};
@@ -43,5 +49,4 @@ export class DateInputComponent implements ControlValueAccessor, OnChanges {
   public writeValue(value: string): void {
     this.dateValue = value;
   }
-
 }

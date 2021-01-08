@@ -8,7 +8,7 @@
         <div class="label-wrapper">
           <label for="name" class="input-label">Title</label>
           <p class="input-error" *ngIf="!title.valid && title.touched">
-            Title is lonager than 50 synbols!
+            Title is invalid!
           </p>
         </div>
         <input
@@ -29,7 +29,7 @@
             class="input-error"
             *ngIf="!description.valid && description.touched"
           >
-            Description should not be longer than 500 symbols!
+            Description is invalid!
           </p>
         </div>
         <textarea
@@ -50,7 +50,7 @@
         [ngModel]="creationDate"
         validateDate
       >
-        <p *ngIf="!creationDate.valid" class="input-error">The date should be in DD/MM/YYYY</p>
+        <p *ngIf="!creationDate.valid" class="input-error">The date should be in DD/MM/YYYY format!</p>
       </app-date-input>
       <app-duration-input
         [duration]="course?.length || ''"
@@ -59,9 +59,11 @@
         [ngModel]="duration"
         validateNumber
       >
-        <p *ngIf="!duration.valid" class="input-error">The duratiion should be a number</p>
+        <p *ngIf="!duration.valid" class="input-error">The duration in invalid</p>
       </app-duration-input>
-      <app-authors-input></app-authors-input>
+      <app-authors-input
+        [selectedAuthors]="course?.authors || ''"
+      ></app-authors-input>
       <div class="new-course__buttons">
         <button class="wide-button" (click)="onCancel()">Cancel</button>
         <button

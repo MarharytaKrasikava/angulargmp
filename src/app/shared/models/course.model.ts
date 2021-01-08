@@ -9,7 +9,7 @@ export interface CourseInterface {
   length: number;
   description: string;
   isTopRated: boolean;
-  authors: Author;
+  authors: Author[];
 }
 
 export class Course implements CourseInterface {
@@ -19,9 +19,9 @@ export class Course implements CourseInterface {
   public length: number;
   public description: string;
   public isTopRated: boolean;
-  public authors: Author;
+  public authors: Author[];
 
-  constructor(id: number, name: string, date: string, length: number, description: string, topR: boolean, authors: Author) {
+  constructor(id: number, name: string, date: string, length: number, description: string, topR: boolean, authors: Author[]) {
     this.id = id;
     this.name = name;
     this.date = date;

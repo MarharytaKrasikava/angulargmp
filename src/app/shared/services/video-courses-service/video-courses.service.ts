@@ -12,7 +12,7 @@ import * as CoursesActions from '../../../video-courses/courses/store/courses.ac
 export class VideoCoursesService {
   public courses: Course[];
   public loadAmount: number = 3;
-  public searchValue = new Subject<string>();
+  public searchValue: Subject<string> = new Subject();
 
   constructor(private http: HttpClient, private store: Store) {}
 

@@ -38,6 +38,8 @@ import { appReducer } from './store/app.reducer';
 import { environment } from 'src/environments/environment';
 import { DateValidatorDirective } from './shared/directives/date-validator.directive';
 import { NumberValidatorDirective } from './shared/directives/number-validator.directive';
+import { AuthorsService } from './shared/services/authors.service';
+import { AuthorComponent } from './video-courses/new-course/authors-input/author/author.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,7 @@ import { NumberValidatorDirective } from './shared/directives/number-validator.d
     AuthorsInputComponent,
     PageNotFoundComponent,
     SpinnerComponent,
+    AuthorComponent,
     DateValidatorDirective,
     NumberValidatorDirective,
   ],
@@ -83,6 +86,7 @@ import { NumberValidatorDirective } from './shared/directives/number-validator.d
       useClass: AuthInterceptorService,
       multi: true,
     },
+    AuthorsService,
   ],
   bootstrap: [AppComponent],
 })

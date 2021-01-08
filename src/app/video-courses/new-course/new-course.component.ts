@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Course } from 'src/app/shared/models';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Author, Course } from 'src/app/shared/models';
 import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';
+import { AppState } from 'src/app/store/app.reducer';
 import * as CoursesActions from '../courses/store/courses.actions';
 
 @Component({
@@ -11,15 +14,22 @@ import * as CoursesActions from '../courses/store/courses.actions';
   templateUrl: './new-course.component.html',
   styleUrls: ['./new-course.component.css'],
 })
-export class NewCourseComponent implements OnInit {
+export class NewCourseComponent implements OnInit, OnDestroy {
+  private storeSubscription: Subscription;
+  private authors: Author[];
   public course: Course;
 
   constructor(
     private route: ActivatedRoute,
     private courseService: VideoCoursesService,
     private router: Router,
-    private store: Store
+    private store: Store<AppState>
   ) {}
+
+  private extractDate = (value: string) => {
+    const dateParams: string | string[] = typeof value === 'string' && value.split('/');
+    return `${dateParams[2]}-${dateParams[1]}-${dateParams[0]}`;
+  }
 
   public ngOnInit(): void {
     const id: number = this.route.snapshot.params.id;
@@ -29,6 +39,12 @@ export class NewCourseComponent implements OnInit {
     this.courseService.getCourse(id).subscribe((course) => {
       this.course = course;
     });
+    this.storeSubscription = this.store
+      .select('authors')
+      .pipe(map((authorsState) => authorsState.authors))
+      .subscribe((authors: Author[]) => {
+        this.authors = authors;
+      });
   }
 
   public onCancel(): void {
@@ -36,7 +52,7 @@ export class NewCourseComponent implements OnInit {
   }
 
   public onSave(form: NgForm): void {
-    const newCourse = new Course(
+    const newCourse: Course = new Course(
       this.course?.id || new Date().getTime(),
       form.value.title || this.course.name,
       form.value.creationDate
@@ -45,7 +61,7 @@ export class NewCourseComponent implements OnInit {
       form.value.duration || this.course.length,
       form.value.description || this.course.description,
       false,
-      { id: 123, name: 'Marho' }
+      this.authors || [{ id: 123, name: 'Marho' }]
     );
     if (this.course) {
       this.store.dispatch(new CoursesActions.EditCourse(newCourse));
@@ -55,8 +71,7 @@ export class NewCourseComponent implements OnInit {
     this.router.navigate(['/courses']);
   }
 
-  private extractDate = (value: string) => {
-    const dateParams = typeof value === 'string' && value.split('/');
-    return `${dateParams[2]}-${dateParams[1]}-${dateParams[0]}`;
-  };
+  public ngOnDestroy(): void {
+    this.storeSubscription.unsubscribe();
+  }
 }
