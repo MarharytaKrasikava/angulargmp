@@ -3,10 +3,12 @@
 <section class="input-page__main-section">
   <div class="input-page__main-section__form new-course">
     <form (ngSubmit)="onSave(form)" #form="ngForm">
-      <h1>New course</h1>
+      <h1>{{(course ? 'EDIT_COURSE.EDIT_TITLE' : 'EDIT_COURSE.NEW_TITLE') | translate}}</h1>
       <div class="new-course__form-input">
         <div class="label-wrapper">
-          <label for="name" class="input-label">Title</label>
+          <label for="name" class="input-label">
+            {{'EDIT_COURSE.NAME_LABEL' | translate}}
+          </label>
           <p class="input-error" *ngIf="!title.valid && title.touched">
             Title is invalid!
           </p>
@@ -25,7 +27,9 @@
       </div>
       <div class="new-course__form-input">
         <div class="label-wrapper">
-          <label for="description" class="input-label">Description</label>
+          <label for="description" class="input-label">
+            {{'EDIT_COURSE.DESCRIPTION_LABEL' | translate}}
+          </label>
           <p
             class="input-error"
             *ngIf="!description.valid && description.touched"
@@ -35,7 +39,7 @@
         </div>
         <textarea
           class="wide-input long-input"
-          placeholder="Video Course Description"
+          placeholder="{{'EDIT_COURSE.DESCRIPTION_PLACEHOLDER' | translate}}"
           id="description"
           [ngModel]="course?.description || ''"
           name="description"
@@ -68,11 +72,15 @@
       <p *ngIf="!authors.length" class="input-error">The autors field in empty</p>
       </app-authors-input>
       <div class="new-course__buttons">
-        <button class="wide-button" (click)="onCancel()">Cancel</button>
+        <button class="wide-button" (click)="onCancel()">
+          {{'EDIT_COURSE.CANCEL_BUTTON' | translate}}
+        </button>
         <button
           class="new-course__buttons__save wide-button"
           type="submit" [disabled]="!form.valid || !authors.length"
-        >Save</button>
+        >
+          {{'EDIT_COURSE.SAVE_BUTTON' | translate}}
+        </button>
       </div>
     </form>
   </div>

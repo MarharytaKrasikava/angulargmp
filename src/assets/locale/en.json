@@ -1,0 +1,49 @@
+{
+  "HEADER": {
+      "TITLE": "Video Course",
+      "LOGOFF": "Log off"
+  },
+  "LOGIN-PAGE": {
+    "PAGE_TITLE": "Login",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "LOGIN_BUTTON": "Log In"
+  },
+  "BREADCRUMBS": {
+    "COURSES": "Courses"
+  },
+  "SEARCH": {
+    "BUTTON": "Search",
+    "PLACEHOLDER": "Text to Search"
+  },
+  "COURSES": {
+    "ADD_COURSE_BUTTON": "Add course",
+    "LOAD_MORE_BUTTON": "Load more"
+  },
+  "COURSE": {
+    "TITLE": "Video Course",
+    "EDIT_BUTTON": "Edit",
+    "DELETE_COURSE": "Delete"
+  },
+  "DIALOG": {
+    "MESSAGE": "Do you really want to delete this course?",
+    "CANCEL_BUTTON": "Cancel",
+    "DELETE_BUTTON": "Delete"
+  },
+  "EDIT_COURSE": {
+    "EDIT_TITLE": "Edit course",
+    "NEW_TITLE": "New course",
+    "NAME_LABEL": "Name",
+    "DESCRIPTION_LABEL": "Description",
+    "CANCEL_BUTTON": "Cancel",
+    "SAVE_BUTTON": "Save",
+    "NAME_PLACEHOLDER": "Video Course Title",
+    "DESCRIPTION_PLACEHOLDER": "What is useful in your course?",
+    "DURATION_LABEL": "Duration",
+    "DURATION_PLACEHOLDER": "Duration in minutes",
+    "DATE_LABEL": "Date",
+    "DATE_PLACEHOLDER": "Creation date in DD/MM/YYYY format",
+    "AUTHORS_LABEL": "Authors",
+    "AUTHORS_PLACEHOLDER": "Add authors of this course"
+  }
+}

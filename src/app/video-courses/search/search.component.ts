@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';

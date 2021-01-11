@@ -4,7 +4,7 @@
     <form class="input-page__main-section__form" #form="ngForm" (ngSubmit)="onLogin(form)">
       <h1>Login</h1>
       <div class="login-page__main-section__form__input">
-        <label for="login">Login</label>
+        <label for="login">{{ 'LOGIN-PAGE.LOGIN' | translate }}</label>
         <input
           type="text"
           placeholder="Enter your login"
@@ -18,7 +18,7 @@
         />
       </div>
       <div class="login-page__main-section__form__input">
-        <label for="password">Password</label>
+        <label for="password">{{ 'LOGIN-PAGE.PASSWORD' | translate }}</label>
         <input
           type="password"
           class="wide-input"
@@ -35,7 +35,7 @@
         class="wide-button login-page__main-section__form__login-button"
         routerLink="/login"
         [disabled]="!form.valid"
-      >Log In</button>
+      >{{ 'LOGIN-PAGE.LOGIN_BUTTON' | translate}}</button>
     </form>
   </section>
   <app-footer></app-footer>

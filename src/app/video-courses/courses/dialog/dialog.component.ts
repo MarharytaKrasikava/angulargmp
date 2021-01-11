@@ -5,12 +5,12 @@ import { MatDialogRef } from '@angular/material/dialog';
   selector: 'app-dialog',
   template: `<h2>Course Remove</h2>
     <mat-dialog-content class="mat-typography"
-      >Do you really want to delete this course?</mat-dialog-content
+      >{{'DIALOG.MESSAGE' | translate}}</mat-dialog-content
     >
     <mat-dialog-actions align="center">
-      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button (click)="onCancel()">{{'DIALOG.CANCEL_BUTTON' | translate}}</button>
       <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
-        Delete
+        {{'DIALOG.DELETE_BUTTON' | translate}}
       </button>
     </mat-dialog-actions>`,
 })
