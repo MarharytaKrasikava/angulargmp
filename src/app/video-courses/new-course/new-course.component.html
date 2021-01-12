@@ -10,7 +10,7 @@
             {{'EDIT_COURSE.NAME_LABEL' | translate}}
           </label>
           <p class="input-error" *ngIf="!title.valid && title.touched">
-            Title is invalid!
+            {{'EDIT_COURSE.NAME_VALIDATION' | translate}}
           </p>
         </div>
         <input
@@ -34,7 +34,7 @@
             class="input-error"
             *ngIf="!description.valid && description.touched"
           >
-            Description is invalid!
+            {{'EDIT_COURSE.DESCRIPTION_VALIDATION' | translate}}
           </p>
         </div>
         <textarea
@@ -55,7 +55,9 @@
         [ngModel]="creationDate"
         validateDate
       >
-        <p *ngIf="!creationDate.valid" class="input-error">The date should be in DD/MM/YYYY format!</p>
+        <p *ngIf="!creationDate.valid" class="input-error">
+          {{'EDIT_COURSE.DATE_VALIDATION' | translate}}
+        </p>
       </app-date-input>
       <app-duration-input
         [duration]="course?.length || ''"
@@ -64,12 +66,16 @@
         [ngModel]="duration"
         validateNumber
       >
-        <p *ngIf="!duration.valid" class="input-error">The duration is invalid</p>
+        <p *ngIf="!duration.valid" class="input-error">
+          {{'EDIT_COURSE.DURATION_VALIDATION' | translate}}
+        </p>
       </app-duration-input>
       <app-authors-input
         [selectedAuthors]="course?.authors || ''"
       >
-      <p *ngIf="!authors.length" class="input-error">The autors field in empty</p>
+      <p *ngIf="!authors.length" class="input-error">
+        {{'EDIT_COURSE.AUTHORS_VALIDATION' | translate}}
+      </p>
       </app-authors-input>
       <div class="new-course__buttons">
         <button class="wide-button" (click)="onCancel()">

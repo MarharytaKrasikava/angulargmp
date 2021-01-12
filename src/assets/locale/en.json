@@ -44,6 +44,11 @@
     "DATE_LABEL": "Date",
     "DATE_PLACEHOLDER": "Creation date in DD/MM/YYYY format",
     "AUTHORS_LABEL": "Authors",
-    "AUTHORS_PLACEHOLDER": "Add authors of this course"
+    "AUTHORS_PLACEHOLDER": "Add authors of this course",
+    "NAME_VALIDATION": "Title is invalid",
+    "DESCRIPTION_VALIDATION": "Description is invalid",
+    "DATE_VALIDATION": "The date should be in DD/MM/YYYY format",
+    "DURATION_VALIDATION": "Duration is invalid",
+    "AUTHORS_VALIDATION": "Select an author"
   }
 }
