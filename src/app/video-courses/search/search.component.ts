@@ -1,19 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { VideoCoursesService } from 'src/app/shared/services/video-courses-service/video-courses.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  @Output() public filterValueSet: EventEmitter<string> = new EventEmitter<string>();
   public searchIcon: IconDefinition = faSearch;
-
   public inputValue: string = '';
 
-  public onClick(): void {
-    this.filterValueSet.emit(this.inputValue);
-  }
+  constructor(private coursesService: VideoCoursesService) {}
 
+  public searchCourses(): void {
+    if (this.inputValue.length >= 3) {
+      this.coursesService.searchValue.next(this.inputValue);
+    }
+  }
 }

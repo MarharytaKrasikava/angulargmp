@@ -1,5 +1,3 @@
-import { strict } from 'assert';
-
 export interface Author {
   id: number;
   name: string;

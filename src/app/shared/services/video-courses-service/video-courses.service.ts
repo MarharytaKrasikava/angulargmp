@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Course, Author } from 'src/app/shared/models';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Course, Author } from 'src/app/shared/models';
 export class VideoCoursesService {
   public courses: Course[];
   public loadAmount: number = 3;
+  public searchValue: Subject<string> = new Subject();
 
   constructor(private http: HttpClient) {}
 
