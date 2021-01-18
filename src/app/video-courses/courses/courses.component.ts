@@ -27,7 +27,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
   private storeSubscription: Subscription;
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
-  // @Input() public filterValue: string = '';
 
   constructor(
     private orderBy: OrderByPipe,

@@ -17,15 +17,15 @@ import {
   ],
 })
 export class DateValidatorDirective implements Validator {
-  validate(control: FormControl): ValidationErrors | null {
+  public validate(control: FormControl): ValidationErrors | null {
     const { value } = control;
-    const dateParams = typeof value === 'string' && value.split('/');
+    const dateParams: string[] = typeof value === 'string' && value.split('/');
     if (!dateParams) {
       return { dateInvalid: true };
     }
-    const day = dateParams[0];
-    const month = dateParams[1];
-    const year = dateParams[2];
+    const day: string = dateParams[0];
+    const month: string = dateParams[1];
+    const year: string = dateParams[2];
     if (
       !dateParams ||
       dateParams.length !== 3 ||

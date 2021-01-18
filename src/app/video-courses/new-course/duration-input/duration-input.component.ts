@@ -34,7 +34,7 @@ export class DurationInputComponent implements ControlValueAccessor, OnChanges {
   public onChange = (value: any) => {};
   public onTouched = () => {};
 
-  public registerOnChange(fn: any) {
+  public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 

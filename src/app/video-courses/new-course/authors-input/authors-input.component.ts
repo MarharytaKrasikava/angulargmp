@@ -7,6 +7,9 @@ import {
   OnDestroy,
   OnChanges,
   SimpleChanges,
+  forwardRef,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -15,15 +18,24 @@ import { Author } from 'src/app/shared/models';
 import { AuthorsService } from 'src/app/shared/services/authors.service';
 import { AppState } from 'src/app/store/app.reducer';
 import * as AuthorsActions from './store/authors.actions';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-authors-input',
   templateUrl: './authors-input.component.html',
   styleUrls: ['./authors-input.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AuthorsInputComponent),
+      multi: true,
+    },
+  ],
 })
-export class AuthorsInputComponent implements OnInit, OnDestroy, OnChanges {
+export class AuthorsInputComponent implements ControlValueAccessor, OnInit, OnDestroy, OnChanges {
   private storeSubscription: Subscription;
   @Input() public selectedAuthors: Author[];
+  @Output() public authorsSelected: EventEmitter<Author[]> = new EventEmitter();
   @ViewChild('authorsInput') public authorsInput: ElementRef;
   public possibleAuthors: Author[];
   public selected: string;
@@ -44,8 +56,24 @@ export class AuthorsInputComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(map((authorsState) => authorsState.authors))
       .subscribe((authors: Author[]) => {
         this.selectedAuthors = authors;
+        this.onChange(authors);
+        this.onTouched();
+        this.authorsSelected.emit(authors);
       });
   }
+
+  public onChange = (value: any) => {};
+  public onTouched = () => {};
+
+  public registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  public registerOnTouched(fn: () => {}): void {
+    this.onTouched = fn;
+  }
+
+  public writeValue(value: Author[]): void {}
 
   public changeValue(newAuthor: string): void {
     if (newAuthor) {

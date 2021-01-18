@@ -64,14 +64,20 @@
       </app-duration-input>
       <app-authors-input
         [selectedAuthors]="course?.authors || ''"
+        name="authors"
+        #authors="ngModel"
+        [ngModel]="authors"
+        validateAuthors
+        (authorsSelected)="selectAuthors($event)"
       >
-      <p *ngIf="!authors.length" class="input-error">The autors field in empty</p>
+        <p *ngIf="!authors.valid" class="input-error">The autors field in empty</p>
       </app-authors-input>
       <div class="new-course__buttons">
         <button class="wide-button" (click)="onCancel()">Cancel</button>
         <button
           class="new-course__buttons__save wide-button"
-          type="submit" [disabled]="!form.valid || !authors.length"
+          type="submit"
+          [disabled]="!form.valid"
         >Save</button>
       </div>
     </form>

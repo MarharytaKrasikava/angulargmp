@@ -40,6 +40,7 @@ import { DateValidatorDirective } from './shared/directives/date-validator.direc
 import { NumberValidatorDirective } from './shared/directives/number-validator.directive';
 import { AuthorsService } from './shared/services/authors.service';
 import { AuthorComponent } from './video-courses/new-course/authors-input/author/author.component';
+import { AuthorsValidatorDirective } from './shared/directives/authors-validator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { AuthorComponent } from './video-courses/new-course/authors-input/author
     AuthorComponent,
     DateValidatorDirective,
     NumberValidatorDirective,
+    AuthorsValidatorDirective,
   ],
   imports: [
     BrowserModule,
