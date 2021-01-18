@@ -1,12 +1,14 @@
 <div class="label-wrapper">
-  <label for="duration" class="input-label">Duration</label>
+  <label for="duration" class="input-label">
+    {{'EDIT_COURSE.DURATION_LABEL' | translate}}
+  </label>
   <ng-content></ng-content>
 </div>
 <div class="duration-input-wrapper">
   <input
     class="wide-input"
     type="text"
-    placeholder="Duration in min"
+    placeholder="{{'EDIT_COURSE.DURATION_PLACEHOLDER' | translate}}"
     id="duration"
     [ngModel]="duration"
     (ngModelChange)="setDuration($event)"

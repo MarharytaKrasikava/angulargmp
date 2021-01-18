@@ -22,12 +22,10 @@ export class AuthInterceptorService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.url !== 'http://localhost:3004/auth/login') {
+    const token: string = localStorage.getItem('authToken');
+    if (request.url !== 'http://localhost:3004/auth/login' && token) {
       const tockenedRequest: HttpRequest<any> = request.clone({
-        headers: request.headers.append(
-          'Authorization',
-          localStorage.getItem('authToken')
-        ),
+        headers: request.headers.append('Authorization', token),
       });
       this.spinnerService.show.next(true);
       return next.handle(tockenedRequest).pipe(

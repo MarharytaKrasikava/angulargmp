@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -40,6 +40,18 @@ import { DateValidatorDirective } from './shared/directives/date-validator.direc
 import { NumberValidatorDirective } from './shared/directives/number-validator.directive';
 import { AuthorsService } from './shared/services/authors.service';
 import { AuthorComponent } from './video-courses/new-course/authors-input/author/author.component';
+import {
+  MissingTranslationHandler,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MissingTranslationService } from './missing-translation.service';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +87,18 @@ import { AuthorComponent } from './video-courses/new-course/authors-input/author
     HttpClientModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MissingTranslationService,
+      },
+      useDefaultLang: false,
+    }),
   ],
   providers: [
     OrderByPipe,

@@ -1,18 +1,26 @@
 <div class="courses__add-course">
   <button type="button" class="wide-button" (click)="addCourse()">
-    <fa-icon [icon]="addCourseIcon"></fa-icon>Add course
+    <fa-icon [icon]="addCourseIcon"></fa-icon>
+    {{'COURSES.ADD_COURSE_BUTTON' | translate}}
   </button>
 </div>
 <div class="courses__list">
   <div *ngIf="courses?.length">
-    <app-course *ngFor="let courseItem of courses" [course]="courseItem" [date]="courseItem.date"
-      appDateHighlight (courseDeleted)="onCourseDeleted($event)" [ngClass]="{isTopRated: courseItem.isTopRated}">
-    </app-course>
+    <app-course
+      *ngFor="let courseItem of courses"
+      [course]="courseItem"
+      [date]="courseItem.date"
+      appDateHighlight
+      (courseDeleted)="onCourseDeleted($event)"
+      [ngClass]="{isTopRated: courseItem.isTopRated}"
+    ></app-course>
   </div>
   <div *ngIf="!courses?.length" class="no-data-message">
     {{ 'No data. Feel free to add a new course' | uppercase}}
   </div>
 </div>
 <div class="courses__load-more">
-  <button type="button" (click)="loadCourses()">Load more</button>
+  <button type="button" (click)="loadCourses()">
+    {{'COURSES.LOAD_MORE_BUTTON' | translate}}
+  </button>
 </div>

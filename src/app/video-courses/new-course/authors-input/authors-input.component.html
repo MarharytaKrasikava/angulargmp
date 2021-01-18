@@ -1,6 +1,8 @@
 <div class="authors__autosuggest">
   <div class="label-wrapper">
-    <label for="authors" class="input-label">Authors</label>
+    <label for="authors" class="input-label">
+      {{ 'EDIT_COURSE.AUTHORS_LABEL' | translate }}
+    </label>
     <ng-content></ng-content>
   </div>
   <div class="authors__input-wrapper">
@@ -8,7 +10,7 @@
       list="authors"
       class="wide-input"
       type="text"
-      placeholder="Add authors"
+      placeholder="{{ 'EDIT_COURSE.AUTHORS_PLACEHOLDER' | translate }}"
       [ngModel]="selected"
       (ngModelChange)="changeValue($event)"
       #authorsInput

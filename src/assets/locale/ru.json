@@ -1,0 +1,54 @@
+{
+  "HEADER": {
+      "TITLE": "Видео Курс",
+      "LOGOFF": "Выйти"
+  },
+  "LOGIN-PAGE": {
+    "PAGE_TITLE": "Войти",
+    "LOGIN": "Логин",
+    "PASSWORD": "Пароль",
+    "LOGIN_BUTTON": "Войти"
+  },
+  "BREADCRUMBS": {
+    "COURSES": "Курсы"
+  },
+  "SEARCH": {
+    "BUTTON": "Искать",
+    "PLACEHOLDER": "Найти по тексту"
+  },
+  "COURSES": {
+    "ADD_COURSE_BUTTON": "Добавить курс",
+    "LOAD_MORE_BUTTON": "Загрузить ещё"
+  },
+  "COURSE": {
+    "TITLE": "Видеокурс",
+    "EDIT_BUTTON": "Изменить",
+    "DELETE_COURSE": "Удалить"
+  },
+  "DIALOG": {
+    "MESSAGE": "Вы действительно хотите удалить этот курс?",
+    "CANCEL_BUTTON": "Отмена",
+    "DELETE_BUTTON": "Удалить"
+  },
+  "EDIT_COURSE": {
+    "EDIT_TITLE": "Изменить курс",
+    "NEW_TITLE": "Новый курс",
+    "NAME_LABEL": "Название",
+    "DESCRIPTION_LABEL": "Описание",
+    "CANCEL_BUTTON": "Отмена",
+    "SAVE_BUTTON": "Сохранить",
+    "NAME_PLACEHOLDER": "Название вашего курса",
+    "DESCRIPTION_PLACEHOLDER": "Что полезного в вашем курсе?",
+    "DURATION_LABEL": "Длительность",
+    "DURATION_PLACEHOLDER": "Длительность в минутах",
+    "DATE_LABEL": "Дата",
+    "DATE_PLACEHOLDER": "Дата создания в формате ДД/ММ/ГГГГ",
+    "AUTHORS_LABEL": "Авторы",
+    "AUTHORS_PLACEHOLDER": "Добавьте авторов этого курса",
+    "NAME_VALIDATION": "Некорректное имя",
+    "DESCRIPTION_VALIDATION": "Некорректное описание",
+    "DATE_VALIDATION": "Дата должна быть в формате ДД/ММ/ГГГГ",
+    "DURATION_VALIDATION": "Длительность некорректна",
+    "AUTHORS_VALIDATION": "Укажите автора"
+  }
+}

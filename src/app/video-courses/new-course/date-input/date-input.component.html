@@ -1,10 +1,10 @@
 <div class="label-wrapper">
-  <label for="date" class="input-label">Date</label>
+  <label for="date" class="input-label">{{ 'EDIT_COURSE.DATE_LABEL' | translate }}</label>
   <ng-content></ng-content>
 </div>
 <input
   class="wide-input"
-  placeholder="dd/mm/yyyy"
+  placeholder="{{ 'EDIT_COURSE.DATE_PLACEHOLDER' | translate }}"
   type="text"
   [ngModel]="dateValue && formatDate(dateValue)"
   (ngModelChange)="changeValue($event)"

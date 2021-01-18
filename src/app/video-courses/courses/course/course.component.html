@@ -1,5 +1,6 @@
 <div class="course__header">
-  <h2 class="course__header__name">Video Course {{course.id}}: {{course.name}}<fa-icon [icon]="starIcon"
+  <h2 class="course__header__name">
+    {{'COURSE.TITLE' | translate }}: {{course.name}}<fa-icon [icon]="starIcon"
       *ngIf="course.isTopRated"></fa-icon>
   </h2>
   <div class="course__header__detail">
@@ -11,10 +12,12 @@
   <p class="course__body__description">{{course.description}}</p>
   <div class="course__body__actions">
     <a class="blue-link" [routerLink]="['/courses', course.id]">
-      <fa-icon [icon]="editIcon"></fa-icon>Edit
+      <fa-icon [icon]="editIcon"></fa-icon>
+      {{'COURSE.EDIT_BUTTON' | translate}}
     </a>
     <button type="button" (click)="onDelete()" class="wide-button">
-      <fa-icon [icon]="deleteIcon"></fa-icon>Delete
+      <fa-icon [icon]="deleteIcon"></fa-icon>
+      {{'COURSE.DELETE_COURSE' | translate}}
     </button>
   </div>
 </div>
