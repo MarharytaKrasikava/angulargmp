@@ -3,7 +3,10 @@
   width: 50%;
 }
 
-.new-course__form-input, app-date-input, app-duration-input, app-authors-input {
+.new-course__form-input,
+app-date-input,
+app-duration-input,
+app-authors-input {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -30,4 +33,17 @@ textarea.long-input {
   background-color: #94d447;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.new-course__buttons__save[disabled] {
+  background-color: #bee491;
+}
+
+.ng-dirty.ng-touched.ng-invalid:not(form) {
+  border: 1px solid red;
+}
+
+.input-error {
+  color: red;
+  margin-left: 20px;
 }

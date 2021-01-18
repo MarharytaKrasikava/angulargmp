@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -16,8 +17,6 @@ import { AppState } from 'src/app/store/app.reducer';
 })
 export class LoginPageComponent implements OnDestroy {
   private storeSubscription: Subscription;
-  public loginValue: string;
-  public passwordValue: string;
 
   constructor(
     private authService: AuthService,
@@ -26,8 +25,8 @@ export class LoginPageComponent implements OnDestroy {
     private coursesService: VideoCoursesService,
   ) {}
 
-  public authenticate(): void {
-    this.authService.logIn(this.loginValue, this.passwordValue);
+  public onLogin(form: NgForm): void {
+    this.authService.logIn(form.value.login, form.value.password);
     this.storeSubscription = this.store
       .select('auth')
       .pipe(map((authState) => authState.userInfo))

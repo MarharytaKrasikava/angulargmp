@@ -1,2 +1,27 @@
-<label for="authors" class="input-label">Authors</label>
-<input class="wide-input" type="text" placeholder="Add authors" id="authors" />
+<div class="authors__autosuggest">
+  <div class="label-wrapper">
+    <label for="authors" class="input-label">Authors</label>
+    <ng-content></ng-content>
+  </div>
+  <div class="authors__input-wrapper">
+    <input
+      list="authors"
+      class="wide-input"
+      type="text"
+      placeholder="Add authors"
+      [ngModel]="selected"
+      (ngModelChange)="changeValue($event)"
+      #authorsInput
+      required
+    >
+    <datalist id="authors">
+      <option *ngFor="let author of possibleAuthors" [value]="author?.name">
+    </datalist>
+    <div *ngIf="selectedAuthors?.length" class="authors__selected">
+      <app-author
+        *ngFor="let author of selectedAuthors"
+        [name]="author?.name"
+      ></app-author>
+    </div>
+  </div>
+</div>

@@ -2,24 +2,85 @@
 <app-breadcrumbs [courseTitle]="course.name" *ngIf="course"></app-breadcrumbs>
 <section class="input-page__main-section">
   <div class="input-page__main-section__form new-course">
-    <h1>New course</h1>
-    <div class="new-course__form-input">
-      <label for="name" class="input-label"></label>
-      <input class="wide-input long-input" type="text" placeholder="Video Course Title" id="name"
-        [value]="course?.name || ''" [(ngModel)]="titleValue"/>
-    </div>
-    <div class="new-course__form-input">
-      <label for="description" class="input-label">Description</label>
-      <textarea class="wide-input long-input" placeholder="Video Course Description" id="description"
-        [value]="course?.description || ''" [(ngModel)]="descriptionValue"></textarea>
-    </div>
-    <app-date-input [dateValue]="course?.date || ''" (newDateValueSet)="dateValueChanged($event)"></app-date-input>
-    <app-duration-input [duration]="course?.length || ''" (newDurationValueSet)="durationValueChanged($event)"></app-duration-input>
-    <app-authors-input></app-authors-input>
-    <div class="new-course__buttons">
-      <button class="wide-button" (click)="onCancel()">Cancel</button>
-      <button class="new-course__buttons__save wide-button" (click)="onSave()">Save</button>
-    </div>
+    <form (ngSubmit)="onSave(form)" #form="ngForm">
+      <h1>New course</h1>
+      <div class="new-course__form-input">
+        <div class="label-wrapper">
+          <label for="name" class="input-label">Title</label>
+          <p class="input-error" *ngIf="!title.valid && title.touched">
+            Title is invalid!
+          </p>
+        </div>
+        <input
+          class="wide-input long-input"
+          type="text"
+          placeholder="Video Course Title"
+          id="name"
+          [ngModel]="course?.name || ''"
+          name="title"
+          required
+          [maxlength]="50"
+          #title="ngModel"
+        />
+      </div>
+      <div class="new-course__form-input">
+        <div class="label-wrapper">
+          <label for="description" class="input-label">Description</label>
+          <p
+            class="input-error"
+            *ngIf="!description.valid && description.touched"
+          >
+            Description is invalid!
+          </p>
+        </div>
+        <textarea
+          class="wide-input long-input"
+          placeholder="Video Course Description"
+          id="description"
+          [ngModel]="course?.description || ''"
+          name="description"
+          required
+          [maxlength]="500"
+          #description="ngModel"
+        ></textarea>
+      </div>
+      <app-date-input
+        [dateValue]="course?.date || ''"
+        name="creationDate"
+        #creationDate="ngModel"
+        [ngModel]="creationDate"
+        validateDate
+      >
+        <p *ngIf="!creationDate.valid" class="input-error">The date should be in DD/MM/YYYY format!</p>
+      </app-date-input>
+      <app-duration-input
+        [duration]="course?.length || ''"
+        name="duration"
+        #duration="ngModel"
+        [ngModel]="duration"
+        validateNumber
+      >
+        <p *ngIf="!duration.valid" class="input-error">The duration is invalid</p>
+      </app-duration-input>
+      <app-authors-input
+        [selectedAuthors]="course?.authors || ''"
+        name="authors"
+        #authors="ngModel"
+        [ngModel]="authors"
+        validateAuthors
+        (authorsSelected)="selectAuthors($event)"
+      >
+        <p *ngIf="!authors.valid" class="input-error">The autors field in empty</p>
+      </app-authors-input>
+      <div class="new-course__buttons">
+        <button class="wide-button" (click)="onCancel()">Cancel</button>
+        <button
+          class="new-course__buttons__save wide-button"
+          type="submit"
+          [disabled]="!form.valid"
+        >Save</button>
+      </div>
+    </form>
   </div>
 </section>
 <app-footer></app-footer>

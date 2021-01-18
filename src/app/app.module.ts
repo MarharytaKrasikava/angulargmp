@@ -36,6 +36,11 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { appReducer } from './store/app.reducer';
 import { environment } from 'src/environments/environment';
+import { DateValidatorDirective } from './shared/directives/date-validator.directive';
+import { NumberValidatorDirective } from './shared/directives/number-validator.directive';
+import { AuthorsService } from './shared/services/authors.service';
+import { AuthorComponent } from './video-courses/new-course/authors-input/author/author.component';
+import { AuthorsValidatorDirective } from './shared/directives/authors-validator.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +61,10 @@ import { environment } from 'src/environments/environment';
     AuthorsInputComponent,
     PageNotFoundComponent,
     SpinnerComponent,
+    AuthorComponent,
+    DateValidatorDirective,
+    NumberValidatorDirective,
+    AuthorsValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +76,7 @@ import { environment } from 'src/environments/environment';
     MatProgressSpinnerModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [
     OrderByPipe,
@@ -79,6 +88,7 @@ import { environment } from 'src/environments/environment';
       useClass: AuthInterceptorService,
       multi: true,
     },
+    AuthorsService,
   ],
   bootstrap: [AppComponent],
 })

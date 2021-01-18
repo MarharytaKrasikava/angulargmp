@@ -1,3 +1,11 @@
-<label for="date" class="input-label">Date</label>
-<input class="wide-input" type="date" placeholder="Creation Date" id="date" [(ngModel)]="newDateValue" (blur)="changeValue()"
-  [value]="dateValue && formatDate(dateValue)" />
+<div class="label-wrapper">
+  <label for="date" class="input-label">Date</label>
+  <ng-content></ng-content>
+</div>
+<input
+  class="wide-input"
+  placeholder="dd/mm/yyyy"
+  type="text"
+  [ngModel]="dateValue && formatDate(dateValue)"
+  (ngModelChange)="changeValue($event)"
+/>

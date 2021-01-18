@@ -1,5 +1,13 @@
-<div class="search__wrapper">
+<form class="search__wrapper" #form="ngForm">
   <fa-icon [icon]="searchIcon"></fa-icon>
-  <input class="wide-input" type="search" placeholder="Text to Search" [(ngModel)]="inputValue" (keyup)="searchCourses()">
-</div>
-<button class="search__button" type="button" (click)="onClick()">Search</button>
+  <input
+    class="wide-input"
+    type="search"
+    placeholder="Text to Search"
+    ngModel
+    (ngModelChange)="searchCourses()"
+    name="searchValue"
+    #searchValue="ngModel"
+  >
+</form>
+<button class="search__button" type="button" (click)="searchCourses()">Search</button>

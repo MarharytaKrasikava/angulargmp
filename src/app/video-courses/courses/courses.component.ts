@@ -1,10 +1,7 @@
 import {
   Component,
-  Input,
-  OnChanges,
   OnDestroy,
-  OnInit,
-  SimpleChanges,
+  OnInit
 } from '@angular/core';
 import { faPlus, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -25,12 +22,11 @@ import { AppState } from 'src/app/store/app.reducer';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
 })
-export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
+export class CoursesComponent implements OnInit, OnDestroy {
   private searchSubscription: Subscription;
   private storeSubscription: Subscription;
   public courses: Course[] = [];
   public addCourseIcon: IconDefinition = faPlus;
-  @Input() public filterValue: string = '';
 
   constructor(
     private orderBy: OrderByPipe,
@@ -59,14 +55,6 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
       });
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes.filterValue.currentValue !== changes.filterValue.previousValue
-    ) {
-      this.courses = this.filter.transform(this.courses, this.filterValue);
-    }
-  }
-
   public loadCourses(): void {
     this.coursesService.loadAmount += 3;
     this.coursesService.getCourses(0, this.coursesService.loadAmount);
@@ -86,11 +74,11 @@ export class CoursesComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  public addCourse() {
+  public addCourse(): void {
     this.router.navigate(['/new-course']);
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
     this.storeSubscription.unsubscribe();
   }
